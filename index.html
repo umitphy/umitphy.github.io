@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essayler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        /* Sidebar - Başlıklar için */
+        .sidebar {
+            width: 25%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        .sidebar ul li a:hover {
+            color: #007BFF;
+        }
+        /* Content Area - Essay İçeriği için */
+        .content {
+            width: 75%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        /* Genel stil */
+        a {
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar - Başlıklar -->
+    <div class="sidebar">
+        <h2>Essays'</h2>
+        <ul>
+            <li><a href="#essay1">Essay 1 - Başlık</a></li>
+        </ul>
+    </div>
+
+    <!-- Content - Essay İçeriği -->
+    <div class="content">
+        <h2 id="essay1">Learning Enlish Language is fun!</h2>
+        <p>
+            Since I started learn English language, I have got a vision of a new world sight. It is kind of compliceted to learn and apply to speak but in the long term is kind of joy.
+            Learning new language is not normal day activite in life. There are some weird named things. In your mother language, it was not named but in another language is named. 
+            This is something you cannot accept in the first step. It is weird but by the time you start search these word by self and volubly. Then you got that idea if there are a lot
+            unnamed feelings in English language, what about all language in the world? What about the languages which were forgatten? Do not just learng a language. Try to feel it!
+        </p>
+    </div>
+</body>
+</html>
