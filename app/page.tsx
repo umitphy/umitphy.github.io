@@ -176,7 +176,7 @@ const HomePage = () => {
 
         {/* Lessons Section */}
         <section id="lessons">
-          <h2 className="text-3xl font-bold text-teal-600 mb-6">Dersler</h2>
+          <h2 className="text-3xl font-bold text-teal-600 mb-6">Desrsler</h2>
           <div className="space-y-4">
             {lessons.map((lesson, idx) => (
               <div key={idx} className="bg-white rounded-lg shadow-md p-6">
