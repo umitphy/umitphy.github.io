@@ -6,6 +6,6 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '2rem'
-        }, children: "Merhaba D\u00FCnya! ne yaparsan yap dunya bu" }));
+        }, children: "Merhaba D\u00FCnya! ne yaparsan yap dunya bu!" }));
 }
 export default App;
