@@ -1,15 +1,17 @@
-// src/App.tsx
-import * as React from 'react';
+import React from 'react';
+
 function App() {
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh',
-      fontSize: '2rem'
-    }}>
-      Merhaba, Dünya! gayet
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '2rem'
+      }}
+    >
+      Merhaba Dünya!
     </div>
   );
 }
