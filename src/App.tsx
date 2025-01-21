@@ -11,7 +11,7 @@ function App() {
         fontSize: '2rem'
       }}
     >
-      Merhaba Dünya! ne yaparsan yap dunya bu!
+      Merhaba Dünya! ne yaparsan yap dunya bu! U.
     </div>
   );
 }
