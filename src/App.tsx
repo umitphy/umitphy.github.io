@@ -1,18 +1,17 @@
-import React from "react";
-import Header from "./components/Header";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Footer from "./components/Footer";
-
-const App: React.FC = () => {
+// src/App.tsx
+import * as React from 'react';
+function App() {
   return (
-    <div>
-      <Header />
-      <About />
-      <Projects />
-      <Footer />
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      fontSize: '2rem'
+    }}>
+      Merhaba, Dünya! gayet
     </div>
   );
-};
+}
 
 export default App;
