@@ -1,10 +1,10 @@
 /* Genel Stil */
 body {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: #0d0d0d;
-  color: #e0e0e0;
-  overflow-x: hidden;
+  font-family: 'Lora', serif; /* Zarif ve otantik font */
+  background: #f7f7f7; /* Çok açık gri, minimal */
+  color: #2d3748; /* Koyu gri-mavi, modern */
+  overflow: hidden; /* Tüm kaydırma çubukları devre dışı */
 }
 
 /* App Düzeni */
@@ -23,17 +23,18 @@ body {
 /* Sabit Ana Menü */
 .main-menu {
   width: 200px;
-  background: #1a1a2e;
+  background: #ffffff; /* Beyaz, temiz */
   padding: 20px;
   height: 100vh;
-  border-right: 2px solid #1abc9c;
-  box-shadow: 0 0 5px rgba(26, 188, 156, 0.3);
+  border-right: 1px solid #e8ecef; /* Hafif gri çerçeve */
 }
 
 .main-menu h2 {
-  color: #1abc9c;
-  text-shadow: 0 0 2px rgba(26, 188, 156, 0.5);
-  margin-bottom: 20px;
+  color: #2d3748; /* Koyu gri-mavi */
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-align: center;
 }
 
 .main-menu ul {
@@ -42,32 +43,37 @@ body {
 }
 
 .main-menu li {
-  margin: 15px 0;
-  padding: 10px;
+  margin: 20px 0;
+  padding: 10px 0;
   cursor: pointer;
-  background: #16213e;
-  border: 1px solid #333;
-  transition: all 0.3s ease;
+  color: #2d3748;
+  font-size: 1.1em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.main-menu li::before {
+  content: "—"; /* Çizgisel detay */
+  color: #3182ce; /* Yumuşak mavi */
+  position: absolute;
+  left: -15px;
 }
 
 .main-menu li:hover,
 .main-menu li.active {
-  background: #1abc9c;
-  color: #0d0d0d;
-  box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+  color: #3182ce; /* Mavi vurgu */
 }
 
 /* Yazılar Menüsü (İkinci Menü) */
 .posts-menu {
   width: 250px;
-  background: #1a1a2e;
+  background: #ffffff;
   padding: 20px;
   height: 100vh;
-  border-right: 2px solid #e94560;
-  box-shadow: 0 0 5px rgba(233, 69, 96, 0.3);
+  border-right: 1px solid #e8ecef;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #e94560 #1a1a2e;
+  scrollbar-color: #3182ce #ffffff; /* Mavi ve beyaz */
 }
 
 .posts-menu::-webkit-scrollbar {
@@ -75,22 +81,23 @@ body {
 }
 
 .posts-menu::-webkit-scrollbar-thumb {
-  background: #e94560;
+  background: #3182ce;
   border-radius: 4px;
 }
 
 .posts-menu::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #ffffff;
 }
 
 .posts-menu h3 {
-  color: #e94560;
-  text-shadow: 0 0 2px rgba(233, 69, 96, 0.5);
+  color: #2d3748;
   position: sticky;
   top: 0;
-  background: #1a1a2e;
+  background: #ffffff;
   padding: 10px 0;
   margin: 0;
+  font-weight: 700;
+  text-align: center;
 }
 
 .posts-menu ul {
@@ -100,18 +107,24 @@ body {
 }
 
 .posts-menu li {
-  margin: 10px 0;
-  padding: 10px;
-  background: #16213e;
-  border: 1px solid #333;
+  margin: 15px 0;
+  padding: 10px 0;
+  color: #2d3748;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.posts-menu li::before {
+  content: "•"; /* Nokta detay */
+  color: #3182ce;
+  position: absolute;
+  left: -15px;
 }
 
 .posts-menu li:hover {
-  background: #e94560;
-  color: #0d0d0d;
-  box-shadow: 0 0 5px rgba(233, 69, 96, 0.5);
+  color: #3182ce;
 }
 
 /* Ana İçerik */
@@ -119,8 +132,8 @@ body {
   flex-grow: 1;
   padding: 20px;
   min-width: 0;
-  height: 100vh; /* Sabit yükseklik */
-  overflow: hidden; /* Sayfanın kaymasını önler */
+  height: 100vh;
+  overflow: hidden; /* Sayfa sabit */
 }
 
 /* Yazı Detay, Hoş Geldiniz, Hakkımda ve Sosyal Medya */
@@ -128,18 +141,17 @@ body {
 .welcome,
 .about,
 .social {
-  background: #1a1a2e;
+  background: #ffffff; /* Beyaz içerik */
   padding: 20px;
-  border: 2px solid #e94560;
-  box-shadow: 0 0 5px rgba(233, 69, 96, 0.3);
-  height: calc(100% - 40px); /* Padding düşülür */
+  border: 1px solid #e8ecef; /* Hafif gri çerçeve */
+  height: calc(100% - 40px);
 }
 
 /* Post Detay için Kaydırma */
 .post-detail {
-  overflow-y: auto; /* Uzun içerik için kaydırma */
+  overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #e94560 #1a1a2e;
+  scrollbar-color: #3182ce #ffffff;
 }
 
 .post-detail::-webkit-scrollbar {
@@ -147,12 +159,12 @@ body {
 }
 
 .post-detail::-webkit-scrollbar-thumb {
-  background: #e94560;
+  background: #3182ce;
   border-radius: 4px;
 }
 
 .post-detail::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #ffffff;
 }
 
 /* Sosyal Medya İkonları */
@@ -163,22 +175,21 @@ body {
 }
 
 .social-links a {
-  color: #1abc9c;
-  font-size: 2em; /* Daha büyük ikonlar */
+  color: #2d3748; /* Koyu gri-mavi */
+  font-size: 2em;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 10px; /* İkon ile metin arası boşluk */
+  gap: 10px;
 }
 
 .social-links a i {
-  font-size: 2.5em; /* İkonlar daha büyük */
+  font-size: 2.5em;
 }
 
 .social-links a:hover {
-  color: #e94560;
-  text-shadow: 0 0 5px rgba(233, 69, 96, 0.5);
+  color: #3182ce; /* Mavi hover */
 }
 
 /* Mobil Uyumluluk */
@@ -199,3 +210,155 @@ body {
     font-size: 2em;
   }
 }
+
+/* ... Mevcut stiller ... */
+
+/* Bookmarks Sayfası */
+.bookmarks {
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e8ecef;
+  height: calc(100% - 40px);
+}
+
+.bookmarks ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bookmarks li {
+  margin: 15px 0;
+  font-size: 1.1em;
+}
+
+.bookmarks a {
+  color: #3182ce;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.bookmarks a:hover {
+  color: #2d3748;
+}
+
+/* ... Mevcut stiller devam eder ... */
+/* ... Mevcut stiller ... */
+
+/* Posts Menu */
+/* ... Mevcut stiller ... */
+
+/* Posts Menu */
+.posts-menu {
+  width: 250px;
+  background: #ffffff;
+  padding: 20px;
+  height: 100vh;
+  border-right: 1px solid #e8ecef;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3182ce #ffffff;
+}
+
+.posts-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.posts-menu li {
+  margin: 15px 0;
+  padding: 10px 0;
+  color: #2d3748;
+  cursor: pointer;
+  font-size: 1em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.posts-menu li::before {
+  content: "•";
+  color: #3182ce;
+  position: absolute;
+  left: -15px;
+}
+
+.posts-menu li:hover {
+  color: #3182ce;
+}
+
+/* Movies Container */
+.movies-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  overflow-y: auto;
+  height: calc(100% - 60px);
+}
+
+.movie-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.movie-item img {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.movie-item span {
+  font-size: 1em;
+  color: #2d3748;
+}
+
+.movie-item:hover span {
+  color: #3182ce;
+}
+
+/* Bookmarks Sayfası */
+.bookmarks {
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e8ecef;
+  height: calc(100% - 40px);
+}
+
+.bookmarks .grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  overflow-y: auto;
+  height: calc(100% - 60px);
+}
+
+.bookmarks .grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+}
+
+.bookmarks .grid-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.bookmarks .grid-item span {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #2d3748;
+}
+
+.bookmarks .grid-item:hover span {
+  color: #3182ce;
+}
+
+/* ... Mevcut stiller devam eder ... */

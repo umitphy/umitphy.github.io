@@ -1,23 +1,26 @@
 import { useState } from "react";
 
-function Sidebar({ isPostsOpen, setIsPostsOpen, posts, setSelectedPost, setActivePage }) {
+function Sidebar({ isPostsOpen, setIsPostsOpen, posts, setSelectedPost, setActivePage, movies, setSelectedMovie }) {
   const [activeMenu, setActiveMenu] = useState("home");
 
   const menuItems = [
     { name: "Home", key: "home" },
     { name: "Posts", key: "posts" },
     { name: "About", key: "about" },
-    { name: "Social", key: "social" }, // Yeni sosyal medya seçeneği
+    { name: "Social", key: "social" },
+    { name: "Bookmarks", key: "bookmarks" },
+    { name: "Movies", key: "movies" },
   ];
 
   const handleMenuClick = (key) => {
     setActiveMenu(key);
     setActivePage(key);
-    if (key === "posts") {
-      setIsPostsOpen(true); // Yazılar menüsü açılır
+    if (key === "posts" || key === "movies") {
+      setIsPostsOpen(true);
     } else {
-      setIsPostsOpen(false); // Diğerlerinde kapanır
-      setSelectedPost(null); // Yazı seçimini sıfırla
+      setIsPostsOpen(false);
+      setSelectedPost(null);
+      setSelectedMovie(null);
     }
   };
 
@@ -37,19 +40,27 @@ function Sidebar({ isPostsOpen, setIsPostsOpen, posts, setSelectedPost, setActiv
           ))}
         </ul>
       </div>
-      {isPostsOpen && (
+      {isPostsOpen && (activeMenu === "posts" || activeMenu === "movies") && (
         <div className="posts-menu">
-          <h3>Posts</h3>
-          <ul>
-            {posts.map((post) => (
-              <li
-                key={post.id}
-                onClick={() => setSelectedPost(post)}
-              >
-                {post.title}
-              </li>
-            ))}
-          </ul>
+          <h3>{activeMenu === "posts" ? "Posts" : "Movies"}</h3>
+          {activeMenu === "posts" ? (
+            <ul>
+              {posts.map((post) => (
+                <li key={post.id} onClick={() => setSelectedPost(post)}>
+                  {post.title}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="movies-container">
+              {movies.map((movie) => (
+                <div key={movie.imdbID} onClick={() => setSelectedMovie(movie)} className="movie-item">
+                  <img src={movie.Poster} alt={movie.Title} />
+                  <span>{movie.Title}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
