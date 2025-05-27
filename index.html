@@ -1,1 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amerika'nın Keşfi ve Kaos Teorisi: Akademik Bir İnceleme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            line-height: 1.7; /* Akademik metinler için daha iyi okunabilirlik */
+        }
+        .main-title {
+            background: linear-gradient(to right, #c026d3, #db2777, #e11d48); /* Daha derin renkler */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title {
+            color: #a16207; /* Koyu sarı/hardal */
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px; /* Biraz daha uzun */
+            height: 4px;  /* Biraz daha kalın */
+            background-color: #d97706; /* Koyu turuncu */
+            margin-top: 10px;
+            margin-left: auto; /* Ortalamak için */
+            margin-right: auto; /* Ortalamak için */
+        }
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.02); /* Daha belirgin hover */
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Diğer elementlerin üzerinde kalması için daha yüksek z-index */
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-link:hover {
+            background-color: #fca5a5; /* Açık kırmızı tonu */
+            color: #7f1d1d; /* Koyu kırmızı */
+        }
+        .academic-text {
+            font-size: 1.1rem; /* Biraz daha büyük temel yazı tipi */
+            color: #374151; /* Koyu gri */
+        }
+        .citation-needed {
+            color: #b91c1c; /* Kırmızı */
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        /* Zaman tüneli için temel stiller */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px; /* İkon için boşluk */
+            margin-bottom: 20px;
+            border-left: 2px solid #fbbf24; /* Amber rengi */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px; /* Çizginin üzerine gelecek şekilde */
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #d97706; /* Koyu turuncu */
+            border: 2px solid white;
+        }
+        .timeline-item h4 { color: #92400e; /* Koyu kahverengi/turuncu */}
+
+        /* Etkileşimli araçlar için genel stil */
+        .interactive-tool-placeholder {
+            border: 2px dashed #fbbf24; /* Amber rengi kesikli çizgi */
+            padding: 20px;
+            text-align: center;
+            background-color: #fffbeb; /* Çok açık sarı */
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <nav class="py-3">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-rose-700">Keşfin Kaosu</a>
+            <button id="mobileMenuButton" class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-200">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <div id="navLinks" class="hidden md:flex flex-col md:flex-row md:items-center md:space-x-2 w-full md:w-auto mt-4 md:mt-0">
+                <a href="#giris" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Giriş</a>
+                <a href="#kesif" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Amerika'nın Keşfi</a>
+                <a href="#kaos" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Kaos Teorisi</a>
+                <a href="#kesisim" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Kesişim Noktası</a>
+                <a href="#etkilesimli-araclar" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Etkileşimli Araçlar</a>
+                <a href="#zaman-tuneli" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Zaman Tüneli</a>
+                <a href="#galeri" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Akademik Galeri</a>
+                <a href="#blog" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Makaleler</a>
+                <a href="#kaynakca" class="nav-link text-gray-700 hover:text-rose-700 font-medium">Kaynakça</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="giris" class="bg-gradient-to-br from-rose-50 via-amber-50 to-fuchsia-50 py-20 md:py-28">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="main-title text-5xl md:text-7xl font-extrabold mb-6">Keşfin Kaotik Mirası</h1>
+            <h2 class="text-2xl md:text-4xl font-semibold text-slate-700 mb-10">Tarihin Akışını Değiştiren Bir Olayın Kaos Teorisi Perspektifinden Akademik Analizi</h2>
+            <p class="max-w-4xl mx-auto text-lg md:text-xl text-slate-600 mb-12 leading-relaxed academic-text">
+                Kristof Kolomb'un 1492'deki yolculuğu, yalnızca coğrafi bir keşif olmanın ötesinde, küresel ölçekte geri dönülmez değişimleri tetikleyen, başlangıç koşullarına son derece hassas, karmaşık bir sistemin fitilini ateşlemiştir. Bu çalışma, Amerika'nın "keşfi" olarak adlandırılan olayın ve sonuçlarının, kaos teorisinin temel prensipleri ışığında multidisipliner bir yaklaşımla incelenmesini amaçlamaktadır.
+            </p>
+            <div class="my-12">
+                <img src="https://placehold.co/900x500/fed7aa/92400e?text=Detaylı+Eski+Dünya+Haritası+ve+Soyut+Kaos+Ögeleri" alt="Eski Dünya Haritası ve Kaos Teorisi Öğeleriyle Kompozisyon" class="mx-auto rounded-xl shadow-2xl">
+            </div>
+            <a href="#kesif" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-10 rounded-lg text-xl transition duration-300 shadow-lg hover:shadow-xl">İncelemeye Başla</a>
+        </div>
+    </header>
+
+    <section id="kesif" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Amerika'nın Keşfi: Tarihsel Bağlam ve Etkileri</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-rose-800 mb-4">Keşif Öncesi Dünyalar</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">15. yüzyıl sonlarında Avrupa, Asya ve Afrika'daki siyasi, ekonomik ve teknolojik durum. Amerika kıtalarındaki yerli medeniyetlerin (örn: Aztek, İnka, Maya, Mississippi Kültürü, İrokua Konfederasyonu) çeşitliliği, gelişmişlik düzeyleri ve dünya görüşleri. <span class="citation-needed">[Kaynak: Mann, 2005]</span></p>
+                </div>
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-rose-800 mb-4">Avrupa Genişlemesinin İtici Güçleri ve İlk Temaslar</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Yeni ticaret yolları arayışı, merkantilizm, teknolojik yenilikler (karavel, usturlap), dini motivasyonlar. Kristof Kolomb'un yolculukları ve sonrasındaki kaşiflerin (örn: Vespucci, Cabot, Cortés, Pizarro) etkileşimleri ve bunların yerli toplumlar üzerindeki ani ve yıkıcı etkileri. <span class="citation-needed">[Kaynak: Crosby, 1972]</span></p>
+                </div>
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-rose-800 mb-4">Columbian Exchange ve Uzun Vadeli Sonuçları</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Kıtalararası bitki, hayvan, teknoloji, hastalık ve fikir alışverişi. Demografik felaketler (özellikle yerli nüfus için), yeni tarım ürünlerinin küresel etkileri, kölelik sisteminin genişlemesi, küresel güç dengelerinin değişimi ve sömürge imparatorluklarının kuruluşu. <span class="citation-needed">[Kaynak: Diamond, 1997]</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kaos" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Kaos Teorisi: Temel Prensipler ve Uygulamaları</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="card bg-slate-50 p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-amber-700 mb-4">Deterministik Kaosun Tanımı</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Kaos teorisi, doğrusal olmayan dinamik sistemlerin görünüşte rastgele ve öngörülemez davranışlarını inceler. Bu sistemler deterministik olup, yani belirli kurallara göre işlerler, ancak başlangıç koşullarındaki çok küçük değişiklikler zamanla devasa farklılıklara yol açabilir (Poincaré, Lorenz). <span class="citation-needed">[Kaynak: Gleick, 1987]</span></p>
+                </div>
+                <div class="card bg-slate-50 p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-amber-700 mb-4">Kelebek Etkisi (Butterfly Effect)</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Edward Lorenz tarafından popülerleştirilen bu kavram, bir sistemin başlangıç koşullarına olan aşırı duyarlılığını ifade eder. Küçük, önemsiz gibi görünen bir olayın, karmaşık bir sistem içinde zamanla büyük ve beklenmedik sonuçlara yol açabileceği metaforudur.</p>
+                    <p class="text-slate-500 mt-3 text-sm italic">*Tarihsel analojisi: Kolomb'un rotasındaki bir derecelik sapma veya bir fırtınanın olmaması, Amerika'nın "keşfinin" seyrini ve sonuçlarını ne ölçüde değiştirebilirdi?*</p>
+                </div>
+                <div class="card bg-slate-50 p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-amber-700 mb-4">Fraktallar ve Garip Çekerler (Strange Attractors)</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Fraktallar, farklı ölçeklerde kendine benzeyen geometrik şekillerdir ve kaotik sistemlerin yapısında sıkça görülürler (Mandelbrot). Garip çekerler ise, kaotik bir sistemin zaman içinde evrildiği karmaşık, fraktal benzeri yörüngelerdir; sistem bu çekere doğru yakınsar ama asla tam olarak aynı noktaya geri dönmez.</p>
+                </div>
+                <div class="card bg-slate-50 p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-amber-700 mb-4">Tarihsel Sistemlerde Kaos</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Tarihsel süreçler, çok sayıda değişkenin etkileşimde bulunduğu karmaşık sistemler olarak modellenebilir. Savaşlar, devrimler, ekonomik krizler veya büyük keşifler gibi olaylar, bu sistemlerdeki kırılma noktaları veya faz geçişleri olarak yorumlanabilir ve kaos teorisi bu dinamikleri anlamak için bir çerçeve sunabilir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kesisim" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Kesişim Noktası: Keşif Sürecinde Kaotik Dinamikler</h2>
+            <div class="space-y-12">
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-fuchsia-700 mb-4">Başlangıç Koşullarının Rolü: 1492 Öncesi "Küçük" Faktörler</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Avrupa'daki belirli teknolojik gelişmeler (örn: matbaa, gemi yapımı), Asya ile ticaret yollarındaki tıkanıklıklar, İber Yarımadası'ndaki siyasi durum (Reconquista'nın sonu) gibi faktörlerin bir araya gelmesi, keşif yolculukları için "uygun" bir başlangıç koşulu seti oluşturmuştur. Bu koşullardan herhangi birinin farklı olması, olayların seyrini değiştirebilirdi.</p>
+                </div>
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-fuchsia-700 mb-4">Öngörülemeyen Sonuçlar ve Geri Besleme Döngüleri: Hastalıklar ve Ekolojik Devrim</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Avrupalıların taşıdığı ve Amerika yerlilerinin bağışıklığının olmadığı hastalıkların (çiçek, kızamık vb.) yarattığı demografik çöküş, sömürgeleştirme sürecini beklenmedik şekilde hızlandırmıştır (pozitif geri besleme). Aynı zamanda, yeni dünyadan Avrupa'ya giden ürünler (patates, mısır) Avrupa'da nüfus artışını tetiklemiş, bu da daha fazla göç ve sömürgecilik faaliyetine yol açmıştır.</p>
+                </div>
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-fuchsia-700 mb-4">Kırılma Noktaları ve Alternatif Tarih Senaryoları</h3>
+                    <p class="academic-text text-slate-600 leading-relaxed">Tenochtitlan'ın düşüşü, Potosi'de gümüş madenlerinin keşfi gibi olaylar, tarihin akışında önemli kırılma noktalarıdır. "Ya Viking yerleşimleri kalıcı olsaydı?", "Ya Çin filosu Amerika'ya daha önce ulaşsaydı?" gibi alternatif tarih senaryoları, sistemin başlangıç koşullarına ve kritik olaylara ne kadar duyarlı olduğunu gösterir. Bu tür analizler, tarihin kaçınılmaz bir çizgide ilerlemediğini, aksine birçok potansiyel yola sahip olduğunu vurgular.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="etkilesimli-araclar" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Etkileşimli Araçlar ve Simülasyonlar</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto academic-text">Bu bölümde, Amerika'nın keşfi ve kaos teorisi konularını daha derinlemesine anlamanıza yardımcı olacak etkileşimli araçlar ve basit simülasyonlar için konseptler sunulmaktadır. (Bu araçların tam işlevselliği için JavaScript ve potansiyel olarak sunucu taraflı programlama gereklidir.)</p>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="interactive-tool-placeholder card p-6">
+                    <h3 class="text-xl font-semibold text-sky-700 mb-3">Kelebek Etkisi Senaryo Aracı</h3>
+                    <p class="text-sm text-slate-500">Kolomb'un yolculuğundaki başlangıç koşullarını (örn: rüzgar hızı, rota sapması) değiştirerek potansiyel farklı varış noktalarını veya olayları keşfedin. <em>(Konsept: Basit parametre girişleri ve sonuç gösterimi)</em></p>
+                    <img src="https://placehold.co/400x200/bae6fd/075985?text=Kelebek+Etkisi+Simülasyon+Arayüzü" alt="Kelebek Etkisi Simülasyon Arayüzü Konsepti" class="mt-4 mx-auto rounded shadow">
+                </div>
+                <div class="interactive-tool-placeholder card p-6">
+                    <h3 class="text-xl font-semibold text-sky-700 mb-3">Etkileşimli Columbian Exchange Haritası</h3>
+                    <p class="text-sm text-slate-500">Kıtalar arasında taşınan önemli bitki, hayvan ve hastalıkları interaktif bir harita üzerinde inceleyin. Zaman çizelgesiyle değişimleri gözlemleyin. <em>(Konsept: Tıklanabilir harita öğeleri, bilgi pencereleri)</em></p>
+                     <img src="https://placehold.co/400x200/bae6fd/075985?text=Columbian+Exchange+Haritası" alt="Columbian Exchange Haritası Konsepti" class="mt-4 mx-auto rounded shadow">
+                </div>
+                <div class="interactive-tool-placeholder card p-6">
+                    <h3 class="text-xl font-semibold text-sky-700 mb-3">Basit Fraktal Üretici</h3>
+                    <p class="text-sm text-slate-500">Mandelbrot veya Julia kümesi gibi temel fraktalların nasıl oluştuğunu adım adım gözlemleyin veya basit parametreleri değiştirerek farklı fraktal desenler yaratın. <em>(Konsept: Görselleştirme ve parametre ayarları)</em></p>
+                    <img src="https://placehold.co/400x200/bae6fd/075985?text=Fraktal+Üretici+Arayüzü" alt="Fraktal Üretici Arayüzü Konsepti" class="mt-4 mx-auto rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="zaman-tuneli" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Gelişmiş Zaman Tüneli: Kritik Olaylar ve Bağlantılar</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto academic-text">Bu zaman tüneli, Amerika'nın keşfi ve kaos teorisiyle ilgili önemli olayları, etkileşimlerini ve potansiyel kaotik dinamiklerini vurgulamaktadır.</p>
+            <div class="relative">
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">MÖ ~30.000 - ~13.000: İlk İnsanların Amerika'ya Göçü</h4>
+                    <p class="text-sm text-slate-600 academic-text">Bering Kara Köprüsü üzerinden Asya'dan Amerika'ya göçler. Bu, kıtanın insanlık tarihindeki "başlangıç koşullarını" oluşturur. Farklı göç dalgaları ve zamanlamaları, sonraki medeniyetlerin gelişimini etkilemiştir.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">MS ~1000: Vikinglerin Kuzey Amerika Keşifleri</h4>
+                    <p class="text-sm text-slate-600 academic-text">Leif Erikson liderliğindeki Vikinglerin L'Anse aux Meadows gibi bölgelere ulaşması. Kalıcı olmasa da, bu erken temas potansiyel bir "kelebek etkisi" anıdır; eğer koşullar farklı olsaydı (örn: daha güçlü yerleşim, yerlilerle farklı ilişkiler), dünya tarihi farklı bir yönde ilerleyebilirdi.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">1453: İstanbul'un Fethi</h4>
+                    <p class="text-sm text-slate-600 academic-text">Doğu Akdeniz ticaret yollarının Osmanlı kontrolüne girmesi, Avrupalı güçleri alternatif deniz yolları aramaya iten önemli bir faktördür. Bu, "başlangıç koşullarını" keşifler lehine değiştiren bir olaydır.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">1492: Kolomb'un İlk Yolculuğu ve Amerika'ya Varışı</h4>
+                    <p class="text-sm text-slate-600 academic-text">Yeni Dünya'nın Avrupa tarafından "yeniden keşfi". Bu olay, küresel ölçekte devasa ve öngörülemeyen sonuçlar doğuran bir "kırılma noktası" ve "kelebek etkisinin" başlangıcıdır.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">1494: Tordesillas Antlaşması</h4>
+                    <p class="text-sm text-slate-600 academic-text">Portekiz ve İspanya arasında Yeni Dünya'nın paylaşıldığı antlaşma. Bu, sömürgecilik dinamiklerini ve gelecekteki çatışmaları şekillendiren önemli bir adımdır.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">1519-1521: Aztek İmparatorluğu'nun Yıkılışı</h4>
+                    <p class="text-sm text-slate-600 academic-text">Hernán Cortés liderliğindeki İspanyolların, hastalıklar ve yerel ittifakların da yardımıyla Aztekleri yenmesi. Bu, Amerika'daki güç dengelerini kökten değiştiren ve sömürgeciliği pekiştiren bir "kırılma noktasıdır".</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">~1545: Potosi Gümüş Madenlerinin Keşfi</h4>
+                    <p class="text-sm text-slate-600 academic-text">Devasa gümüş rezervlerinin bulunması, küresel ekonomiyi derinden etkilemiş, Avrupa'ya büyük bir servet akışı sağlamış (Fiyat Devrimi) ve sömürgeci düzeni güçlendirmiştir. Bu, karmaşık bir "geri besleme döngüsünü" tetiklemiştir.</p>
+                </div>
+                 <div class="timeline-item">
+                    <h4 class="text-xl font-semibold mb-1">17. Yüzyıl: Kuzey Amerika'da Kalıcı Sömürgelerin Kurulması</h4>
+                    <p class="text-sm text-slate-600 academic-text">İngiliz, Fransız, Hollandalı ve diğer Avrupalı güçlerin Kuzey Amerika'da kalıcı sömürgeler kurması. Bu süreç, yerli halklarla çatışmalar, yeni toplumsal yapılar ve nihayetinde ABD gibi yeni ulusların doğuşuyla sonuçlanan karmaşık etkileşimlere yol açmıştır.</p>
+                </div>
+            </div>
+            <p class="text-center text-slate-500 mt-10 italic">(Bu zaman tüneli, olaylara tıklandığında detaylı bilgi, görseller ve kaynaklar sunacak şekilde JavaScript ile geliştirilebilir.)</p>
+        </div>
+    </section>
+
+    <section id="galeri" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Akademik Galeri: Görsel Kaynaklar ve Diyagramlar</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto academic-text">Bu galeri, konuyu destekleyen tarihi haritalar, belgeler, sanat eserleri ve kaos teorisiyle ilgili bilimsel diyagramlar içermektedir.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="bg-slate-50 rounded-lg shadow-xl overflow-hidden card p-4">
+                    <img src="https://placehold.co/600x450/e0e7ff/4338ca?text=1507+Waldseemüller+Haritası" alt="1507 Waldseemüller Haritası (Amerika Adının İlk Kullanıldığı Harita)" class="w-full h-56 object-contain rounded">
+                    <div class="pt-3">
+                        <h5 class="font-bold text-lg text-indigo-700">Waldseemüller Haritası (1507)</h5>
+                        <p class="text-sm text-slate-500">"Amerika" adının ilk kez kullanıldığı tarihi harita.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 rounded-lg shadow-xl overflow-hidden card p-4">
+                    <img src="https://placehold.co/600x450/fecaca/991b1b?text=Aztek+Kodeksinden+Bir+Sahne" alt="Aztek Kodeksinden Bir Sahne (Örn: Florentine Codex)" class="w-full h-56 object-contain rounded">
+                    <div class="pt-3">
+                        <h5 class="font-bold text-lg text-red-700">Aztek Kodeksi Detayı</h5>
+                        <p class="text-sm text-slate-500">Yerli perspektifini yansıtan bir görsel.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 rounded-lg shadow-xl overflow-hidden card p-4">
+                    <img src="https://placehold.co/600x450/d1fae5/047857?text=Lorenz+Çekeri+Diyagramı" alt="Lorenz Çekeri (Attractor) Diyagramı" class="w-full h-56 object-contain rounded">
+                    <div class="pt-3">
+                        <h5 class="font-bold text-lg text-emerald-700">Lorenz Çekeri</h5>
+                        <p class="text-sm text-slate-500">Kaotik sistemlerin davranışını gösteren bir diyagram.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 rounded-lg shadow-xl overflow-hidden card p-4">
+                    <img src="https://placehold.co/600x450/ffedd5/9a3412?text=Mandelbrot+Kümesi+Görseli" alt="Mandelbrot Kümesi Fraktal Görseli" class="w-full h-56 object-contain rounded">
+                    <div class="pt-3">
+                        <h5 class="font-bold text-lg text-orange-700">Mandelbrot Kümesi</h5>
+                        <p class="text-sm text-slate-500">Ünlü bir fraktal örneği.</p>
+                    </div>
+                </div>
+                 <div class="bg-slate-50 rounded-lg shadow-xl overflow-hidden card p-4">
+                    <img src="https://placehold.co/600x450/fef9c3/ca8a04?text=Columbian+Exchange+Şeması" alt="Columbian Exchange Şeması" class="w-full h-56 object-contain rounded">
+                    <div class="pt-3">
+                        <h5 class="font-bold text-lg text-yellow-700">Columbian Exchange Şeması</h5>
+                        <p class="text-sm text-slate-500">Kıtalararası değişimi gösteren bir infografik.</p>
+                    </div>
+                </div>
+                 <div class="bg-slate-50 rounded-lg shadow-xl overflow-hidden card p-4">
+                    <img src="https://placehold.co/600x450/fbcfe8/9d174d?text=Potosi+Gümüş+Madeni+Gravürü" alt="Potosi Gümüş Madeni (Tarihi Gravür)" class="w-full h-56 object-contain rounded">
+                    <div class="pt-3">
+                        <h5 class="font-bold text-lg text-pink-700">Potosi Madeni Gravürü</h5>
+                        <p class="text-sm text-slate-500">Sömürge ekonomisinin bir sembolü.</p>
+                    </div>
+                </div>
+            </div>
+             <p class="text-center text-slate-500 mt-10 italic">(Bu galeri, yüksek çözünürlüklü ve telif hakkı uygun görsellerle zenginleştirilmelidir.)</p>
+        </div>
+    </section>
+
+    <section id="blog" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Akademik Makaleler ve Tartışmalar</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto academic-text">Bu bölümde, konuyla ilgili derinlemesine analizler, farklı teorik yaklaşımlar, devam eden akademik tartışmalar ve vaka incelemeleri yer alacaktır.</p>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-3">Makale: "Kaos Teorisi ve Büyük Tarihsel Kırılmalar: Amerika'nın Keşfi Örneği"</h3>
+                    <p class="academic-text text-slate-600 mb-4 leading-relaxed">Bu makale, Amerika'nın keşfini bir makro-tarihsel kırılma olarak ele alarak, kaos teorisinin bu tür olayları anlamadaki potansiyelini ve sınırlılıklarını tartışmaktadır...</p>
+                    <a href="#" class="text-teal-600 hover:text-teal-800 font-semibold">Tam Metin (PDF) &rarr;</a>
+                </div>
+                <div class="card bg-white p-8 rounded-xl shadow-xl transition">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-3">Tartışma: "Columbian Exchange: Ekolojik Emperyalizm mi, Kaçınılmaz Etkileşim mi?"</h3>
+                    <p class="academic-text text-slate-600 mb-4 leading-relaxed">Farklı tarihçilerin Columbian Exchange'in doğası, etkileri ve etik boyutları hakkındaki argümanları karşılaştırmalı olarak incelenmektedir...</p>
+                    <a href="#" class="text-teal-600 hover:text-teal-800 font-semibold">Tartışmayı Oku &rarr;</a>
+                </div>
+            </div>
+             <p class="text-center text-slate-500 mt-10 italic">(Bu bölüm, hakemli dergilerden makaleler, kitap bölümleri ve önemli akademik blog yazılarıyla zenginleştirilmelidir.)</p>
+        </div>
+    </section>
+
+    <section id="kaynakca" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-16 text-center">Detaylı Akademik Kaynakça</h2>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto academic-text">Bu web sitesinin hazırlanmasında yararlanılan temel ve ileri düzey akademik kaynaklar aşağıda listelenmiştir. (Örnek olarak APA stili kullanılmıştır, tutarlı bir atıf stili benimsenmelidir.)</p>
+            <div class="max-w-3xl mx-auto bg-slate-50 p-8 rounded-lg shadow-lg">
+                <ul class="list-disc list-inside space-y-3 academic-text text-slate-700">
+                    <li>Crosby, A. W. (1972). *The Columbian Exchange: Biological and Cultural Consequences of 1492.* Greenwood Press.</li>
+                    <li>Diamond, J. (1997). *Guns, Germs, and Steel: The Fates of Human Societies.* W.W. Norton & Company.</li>
+                    <li>Fernández-Armesto, F. (2003). *Ideas that Changed the World.* Dorling Kindersley.</li>
+                    <li>Gleick, J. (1987). *Chaos: Making a New Science.* Penguin Books.</li>
+                    <li>Kauffman, S. A. (1993). *The Origins of Order: Self-Organization and Selection in Evolution.* Oxford University Press.</li>
+                    <li>Lorenz, E. N. (1963). Deterministic nonperiodic flow. *Journal of the Atmospheric Sciences, 20*(2), 130-141.</li>
+                    <li>Mann, C. C. (2005). *1491: New Revelations of the Americas Before Columbus.* Vintage Books.</li>
+                    <li>Mann, C. C. (2011). *1493: Uncovering the New World Columbus Created.* Vintage Books.</li>
+                    <li>McNeill, J. R., & McNeill, W. H. (2003). *The Human Web: A Bird's-Eye View of World History.* W. W. Norton & Company.</li>
+                    <li>Weatherford, J. (1988). *Indian Givers: How the Indians of the Americas Transformed the World.* Crown Publishers.</li>
+                    </ul>
+            </div>
+             <p class="text-center text-slate-500 mt-10 italic">(Bu kaynakça, konuyla ilgili en güncel ve temel akademik çalışmaları içerecek şekilde düzenli olarak güncellenmelidir.)</p>
+        </div>
+    </section>
+
+    <footer class="bg-slate-800 text-slate-200 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="currentYear"></span> Keşfin Kaotik Mirası: Akademik Bir İnceleme. Tüm hakları saklıdır.</p>
+            <p class="text-sm text-slate-400 mt-3">Bu site, eğitim, araştırma ve bilgilendirme amacıyla, akademik dürüstlük ilkelerine bağlı kalınarak hazırlanmıştır.</p>
+            <p class="text-sm text-slate-400 mt-1">Prof. Dr. Kaos Uzmanı & Doç. Dr. Tarih Bilgini Danışmanlığında (Örnek)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Geçerli yılı footer'a ekler
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobil menü toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileMenuButton && navLinks) {
+            mobileMenuButton.addEventListener('click', () => {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+            });
+        }
+
+        // Sayfa içi linklere tıklandığında mobil menüyü kapat
+        const internalLinks = navLinks.querySelectorAll('a[href^="#"]');
+        internalLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) { // md breakpoint
+                    navLinks.classList.add('hidden');
+                    navLinks.classList.remove('flex');
+                }
+            });
+        });
+
+        // İPUCU: Daha fazla interaktiflik için buraya JavaScript kodları eklenebilir.
+        // Örneğin:
+        // - Zaman tüneli elemanlarına tıklayınca detay açma/kapama
+        // - Galeri için lightbox (resim büyütme) özelliği
+        // - Basit simülasyonlar için parametre alıp sonuç gösterme
+        // - Bilgi kartları (tooltips)
+    </script>
+
+</body>
+</html>
 
