@@ -175,47 +175,47 @@
             
             <div class="simulation-container">
                 <h3>1. Alternatif Tarih Simülatörü</h3>
-                <p>Başlangıç koşullarını değiştirerek farklı tarihsel senaryoları keşfedin.</p>
+                <p>Başlangıç koşullarını değiştirerek farklı tarihsel senaryoları keşfedin. Lorenz sistemi dinamikleri ve Lyapunov üssleri ile kaotik davranışı analiz edin.</p>
                 <div class="sim-controls">
-                    <label>Teknoloji Seviyesi: <input type="range" id="techLevel" min="1" max="10" value="5"></label>
-                    <label>Hastalık Direnci: <input type="range" id="diseaseResistance" min="1" max="10" value="3"></label>
-                    <label>Askeri Güç: <input type="range" id="militaryPower" min="1" max="10" value="7"></label>
-                    <label>Kültürel Adaptasyon: <input type="range" id="culturalAdaptation" min="1" max="10" value="4"></label>
-                    <button id="runSimulation">Simülasyonu Çalıştır</button>
+                    <label>Teknolojik Asimetri (Ateşli Silahlar, Çelik): <input type="range" id="techLevel" min="1" max="10" value="5"></label>
+                    <label>Epidemiyolojik Direnç (Çiçek, Kızamık): <input type="range" id="diseaseResistance" min="1" max="10" value="3"></label>
+                    <label>Askeri Organizasyon (Pizarro Faktörü): <input type="range" id="militaryPower" min="1" max="10" value="7"></label>
+                    <label>Kültürel Permeabilite (La Malinche Etkisi): <input type="range" id="culturalAdaptation" min="1" max="10" value="4"></label>
+                    <button id="runSimulation">Kaotik Simülasyonu Başlat</button>
                 </div>
                 <canvas id="altHistoryCanvas" width="800" height="400"></canvas>
                 <div id="simulationResults"></div>
             </div>
             
             <div class="simulation-container">
-                <h3>2. Yayılma Dinamiği Modeli</h3>
-                <p>Avrupa etkisinin Amerika'da yayılmasını simüle edin.</p>
+                <h3>2. Kolombiya Değişimi - Epidemiyolojik Kaos</h3>
+                <p>SIR-Kaos modeli ile hastalık yayılımını simüle edin. R₀ değeri ve kaotik dinamikleri gözlemleyin.</p>
                 <div class="sim-controls">
-                    <label>Yayılma Hızı: <input type="range" id="spreadRate" min="0.1" max="2" value="1" step="0.1"></label>
-                    <label>Direnç Faktörü: <input type="range" id="resistanceFactor" min="0" max="1" value="0.5" step="0.1"></label>
-                    <button id="startSpread">Başlat</button>
+                    <label>β (Bulaşma Katsayısı): <input type="range" id="spreadRate" min="0.1" max="2" value="1" step="0.1"></label>
+                    <label>γ (İyileşme/Ölüm Oranı): <input type="range" id="resistanceFactor" min="0" max="1" value="0.5" step="0.1"></label>
+                    <button id="startSpread">Pandemik Yayılım Başlat</button>
                     <button id="pauseSpread">Duraklat</button>
-                    <button id="resetSpread">Sıfırla</button>
+                    <button id="resetSpread">1492'ye Dön</button>
                 </div>
                 <canvas id="spreadCanvas" width="800" height="600"></canvas>
             </div>
             
             <div class="simulation-container">
-                <h3>3. Ekonomik Kaos Modeli</h3>
-                <p>Altın akışının Avrupa ekonomisine etkisini modelleyin.</p>
+                <h3>3. Potosí Paradoksu - Ekonomik Kaos</h3>
+                <p>Fisher denklemi (MV=PY) ve Hollanda hastalığı dinamikleri ile 16. yüzyıl Fiyat Devrimi'ni modelleyin.</p>
                 <canvas id="economicChaosCanvas" width="800" height="400"></canvas>
                 <div class="economic-stats">
                     <div class="stat-item">
-                        <h4>Enflasyon Oranı</h4>
+                        <h4>Enflasyon (Fiyat Devrimi)</h4>
                         <span id="inflationRate">0%</span>
                     </div>
                     <div class="stat-item">
-                        <h4>Altın Rezervi</h4>
+                        <h4>Para Arzı (M2)</h4>
                         <span id="goldReserve">1000</span>
                     </div>
                     <div class="stat-item">
-                        <h4>Ticaret Dengesi</h4>
-                        <span id="tradeBalance">0</span>
+                        <h4>Simülasyon Yılı</h4>
+                        <span id="tradeBalance">1500</span>
                     </div>
                 </div>
             </div>

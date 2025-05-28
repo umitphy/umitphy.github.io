@@ -309,76 +309,91 @@ function initFractalVisualization() {
     drawIteration();
 }
 
-// Lorenz sistemi interaktif simülasyonu
+// Lorenz sistemi interaktif simülasyonu (2D Canvas versiyonu)
 function initLorenzSystem() {
     const canvas = document.getElementById('lorenzCanvas');
     const ctx = canvas.getContext('2d');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas });
-    
-    renderer.setSize(canvas.width, canvas.height);
-    camera.position.z = 50;
     
     // Lorenz sistemi parametreleri
     let sigma = 10;
     let rho = 28;
     let beta = 8/3;
     
-    // Nokta geometrisi
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(10000 * 3);
-    const colors = new Float32Array(10000 * 3);
-    
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    
-    const material = new THREE.PointsMaterial({
-        size: 0.5,
-        vertexColors: true,
-        blending: THREE.AdditiveBlending,
-        transparent: true,
-        opacity: 0.8
-    });
-    
-    const points = new THREE.Points(geometry, material);
-    scene.add(points);
-    
-    // Lorenz sistemi hesaplama
+    // Sistem değişkenleri
     let x = 0.1, y = 0, z = 0;
-    let pointIndex = 0;
+    const trail = [];
+    const maxTrailLength = 5000;
+    
+    // Görünüm parametreleri
+    let rotation = 0;
+    let scale = 8;
+    
+    // Canvas ortala
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
+    function project3D(x, y, z) {
+        // Basit 3D projeksiyon
+        const cosR = Math.cos(rotation);
+        const sinR = Math.sin(rotation);
+        
+        // Y ekseni etrafında döndür
+        const x2 = x * cosR - z * sinR;
+        const z2 = x * sinR + z * cosR;
+        
+        // 2D'ye projeksiyon
+        const perspective = 200 / (200 + z2);
+        const px = centerX + x2 * scale * perspective;
+        const py = centerY - y * scale * perspective;
+        
+        return { x: px, y: py, depth: z2 };
+    }
     
     function updateLorenz() {
         const dt = 0.01;
         
-        for (let i = 0; i < 10; i++) {
-            const dx = sigma * (y - x);
-            const dy = x * (rho - z) - y;
-            const dz = x * y - beta * z;
+        // Lorenz denklemleri
+        const dx = sigma * (y - x);
+        const dy = x * (rho - z) - y;
+        const dz = x * y - beta * z;
+        
+        x += dx * dt;
+        y += dy * dt;
+        z += dz * dt;
+        
+        // Trail'e ekle
+        trail.push({ x, y, z });
+        if (trail.length > maxTrailLength) {
+            trail.shift();
+        }
+    }
+    
+    function draw() {
+        // Arka planı temizle
+        ctx.fillStyle = 'rgba(51, 51, 51, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Trail'i çiz
+        ctx.strokeStyle = '#45b7d1';
+        ctx.lineWidth = 1;
+        
+        for (let i = 1; i < trail.length; i++) {
+            const p1 = project3D(trail[i-1].x, trail[i-1].y, trail[i-1].z);
+            const p2 = project3D(trail[i].x, trail[i].y, trail[i].z);
             
-            x += dx * dt;
-            y += dy * dt;
-            z += dz * dt;
+            // Derinliğe göre renk
+            const hue = (i / trail.length) * 360;
+            const lightness = 50 + (p2.depth + 30) * 0.5;
+            ctx.strokeStyle = `hsl(${hue}, 70%, ${lightness}%)`;
             
-            // Pozisyonları güncelle
-            positions[pointIndex * 3] = x;
-            positions[pointIndex * 3 + 1] = y;
-            positions[pointIndex * 3 + 2] = z;
-            
-            // Renkleri güncelle
-            const hue = (pointIndex % 1000) / 1000;
-            const color = new THREE.Color();
-            color.setHSL(hue, 1, 0.5);
-            
-            colors[pointIndex * 3] = color.r;
-            colors[pointIndex * 3 + 1] = color.g;
-            colors[pointIndex * 3 + 2] = color.b;
-            
-            pointIndex = (pointIndex + 1) % 10000;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
         }
         
-        geometry.attributes.position.needsUpdate = true;
-        geometry.attributes.color.needsUpdate = true;
+        // Rotasyonu güncelle
+        rotation += 0.005;
     }
     
     // Kontroller
@@ -401,22 +416,19 @@ function initLorenzSystem() {
         x = 0.1;
         y = 0;
         z = 0;
-        pointIndex = 0;
-        positions.fill(0);
-        colors.fill(0);
+        trail.length = 0;
     });
     
     // Animasyon döngüsü
     function animate() {
         updateLorenz();
-        
-        // Kamera rotasyonu
-        points.rotation.y += 0.002;
-        points.rotation.x += 0.001;
-        
-        renderer.render(scene, camera);
+        draw();
         animationFrames.lorenz = requestAnimationFrame(animate);
     }
+    
+    // Canvas arka planını başlat
+    ctx.fillStyle = '#333';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     animate();
 }
@@ -711,9 +723,9 @@ function initSpreadSimulation() {
         }
         
         // Başlangıç noktaları (Avrupalı etki)
-        grid[rows/2][10] = 2; // Doğu kıyısı
-        grid[rows/3][10] = 2;
-        grid[2*rows/3][10] = 2;
+        grid[Math.floor(rows/2)][10] = 2; // Doğu kıyısı
+        grid[Math.floor(rows/3)][10] = 2;
+        grid[Math.floor(2*rows/3)][10] = 2;
     }
     
     // Yayılma kuralları
@@ -985,6 +997,23 @@ function initScrollEffects() {
     const sections = document.querySelectorAll('.content-section');
     const timelineItems = document.querySelectorAll('.timeline-item');
     
+    // Animasyonları ekle
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    timelineItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        if (index % 2 === 0) {
+            item.style.transform = 'translateX(-50px)';
+        } else {
+            item.style.transform = 'translateX(50px)';
+        }
+        item.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
@@ -993,7 +1022,8 @@ function initScrollEffects() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0) translateX(0)';
             }
         });
     }, observerOptions);
