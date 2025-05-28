@@ -3,778 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amerika'nın Keşfi ve Kaos Teorisi: İleri Düzey Akademik Bir İnceleme</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #5A082D; /* Koyu Bordo/Şarabi */
-            --secondary-color: #704214; /* Koyu Bronz/Kahve */
-            --accent-color: #8B5A2B; /* Daha Yumuşak Bronz/Altın */
-            --text-color: #1f2937; /* Çok Koyu Gri (Metin için daha iyi kontrast) - Tailwind slate-800 */
-            --bg-light: #f8fafc; /* Çok Açık Gri - Neredeyse Beyaz - Tailwind slate-50 */
-            --bg-medium: #f1f5f9; /* Açık Gri (Kartlar vb. için) - Tailwind slate-100 */
-            --bg-dark: #0f172a; /* Çok Koyu Mavi-Gri (Footer) - Tailwind slate-900 */
-            --heading-color: #1e293b; /* Başlıklar için Koyu Gri - Tailwind slate-800 */
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.85;
-            color: var(--text-color);
-            background-color: var(--bg-light);
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out; /* Daha yumuşak geçiş */
-        }
-
-        body.loaded {
-            opacity: 1;
-        }
-
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .spinner {
-            width: 70px;
-            height: 70px;
-            border: 7px solid rgba(90, 8, 45, 0.3); /* --primary-color'ın açığı, biraz daha kalın */
-            border-top-color: var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; /* Daha yumuşak spin */
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            color: var(--heading-color);
-            font-weight: 800; 
-        }
-
-        .main-title {
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color), #6b21a8); /* Mor tonu eklendi */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1.5px; /* Biraz daha dar */
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 900;
-            letter-spacing: -0.75px;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 160px; /* Daha geniş */
-            height: 7px;  /* Daha kalın */
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--accent-color)); /* Daha zengin gradient */
-            margin-top: 18px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .card {
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
-            background-color: white;
-            border: 1px solid #dee2e6; /* Daha belirgin sınır - Tailwind gray-300 */
-            border-left-width: 8px; 
-            border-left-color: transparent;
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.07); 
-        }
-        .card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.28); 
-            border-left-color: var(--secondary-color);
-        }
-        .card h3, .card h4, .card h5 { color: var(--primary-color); } /* Kart içi başlıklar ana renk */
-        .card .text-secondary-color { color: var(--secondary-color); } /* Kart içi ikincil renk kullanımı */
-
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.85); /* Arka plan opaklığı biraz azaltıldı */
-            backdrop-filter: blur(20px); 
-            box-shadow: 0 8px 25px -6px rgba(0,0,0,0.12); 
-        }
-        .nav-brand { /* Marka için yeni stil */
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: 2.25rem; /* Daha büyük */
-            color: var(--primary-color);
-            transition: color 0.3s ease;
-        }
-        .nav-brand:hover {
-            color: var(--secondary-color);
-        }
-        .nav-link {
-            padding: 16px 22px; 
-            border-radius: 10px;
-            font-weight: 700; /* Daha kalın */
-            color: var(--text-color);
-            transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
-            position: relative; /* Alt çizgi için */
-            overflow: hidden; /* Alt çizgi için */
-        }
-        .nav-link::after { /* Hover için alt çizgi efekti */
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background-color: var(--primary-color);
-            transition: width 0.4s ease, left 0.4s ease;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-            left: 0;
-        }
-        .nav-link:hover {
-            background-color: transparent; /* Arka planı kaldır, sadece alt çizgi */
-            color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-        .nav-link.active {
-             background-color: transparent;
-             color: var(--primary-color);
-             /* box-shadow: 0 3px 12px -3px rgba(90, 8, 45, 0.5); */ /* Gölge kaldırıldı, alt çizgi yeterli */
-        }
-
-        .academic-text {
-            font-size: 1.18rem; /* ~19px */
-            color: #334155; /* Tailwind slate-700 */
-            line-height: 1.95;
-        }
-        .citation-needed, .tooltip-trigger {
-            color: var(--secondary-color);
-            font-weight: 700; /* Daha kalın */
-            border-bottom: 2px dashed var(--accent-color); /* Vurgu rengiyle */
-            cursor: help;
-            position: relative;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-        .citation-needed:hover, .tooltip-trigger:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 60px; 
-            padding-bottom: 35px;
-            margin-bottom: 35px;
-            border-left: 5px solid var(--accent-color); /* Vurgu rengi */
-            cursor: pointer;
-            transition: background-color 0.4s ease, border-left-color 0.4s ease;
-            border-radius: 0 10px 10px 0; /* Sağ kenarları yuvarlat */
-        }
-        .timeline-item:hover {
-            background-color: #fffbeb; /* Tailwind amber-50 */
-            border-left-color: var(--primary-color);
-        }
-        .timeline-item::before {
-            content: '\f073'; 
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: -22px; 
-            top: -8px; 
-            width: 42px; 
-            height: 42px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            color: white;
-            border: 5px solid var(--bg-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
-        }
-        .timeline-item:hover::before {
-            transform: scale(1.1);
-        }
-        .timeline-item h4 {
-            color: var(--primary-color);
-            font-weight: 900; /* En kalın */
-            font-size: 2rem; /* Daha büyük */
-        }
-        .timeline-item.open h4 {
-            color: var(--secondary-color); /* Açıkken renk değişimi */
-        }
-        .timeline-item h4 .expand-icon {
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Zıplama efekti */
-            font-size: 1em; /* h4'e göre oranlı */
-            color: var(--accent-color);
-        }
-        .timeline-item.open .expand-icon {
-            transform: rotate(135deg); /* Daha farklı bir rotasyon */
-        }
-        .timeline-details {
-            background-color: rgba(255,255,255,0.7); /* Hafif şeffaf beyaz */
-            padding: 20px;
-            margin-top: 15px;
-            border-radius: 8px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-        }
-        .timeline-details img {
-            border: 2px solid var(--accent-color);
-        }
-
-
-        .interactive-tool-placeholder {
-            border: 5px dashed var(--accent-color);
-            padding: 35px;
-            background-color: #fffbeb; /* Tailwind amber-50 */
-            border-radius: 15px;
-            color: var(--accent-color);
-        }
-        .interactive-tool-placeholder h3 { color: var(--primary-color); font-size: 2rem; }
-
-        .lightbox {
-            background-color: rgba(15, 23, 42, 0.95); /* Daha da opak */
-        }
-        .lightbox-content img {
-            border: 4px solid white;
-            box-shadow: 0 0 40px rgba(255,255,255,0.3); /* Daha belirgin parlama */
-        }
-        .lightbox-close, .lightbox-prev, .lightbox-next {
-            background-color: rgba(90, 8, 45, 0.8);
-            padding: 14px 20px;
-            font-size: 28px;
-            border-radius: 8px; /* Yuvarlak köşeler */
-        }
-        #lightboxCaption {
-            font-size: 1.1rem;
-            background-color: rgba(0,0,0,0.75);
-            padding: 12px;
-            border-radius: 0 0 8px 8px; /* Alt köşeleri yuvarlat */
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px); /* Daha fazla kayma */
-            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .tooltip {
-            background-color: var(--bg-dark);
-            color: var(--bg-light);
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.35);
-        }
-
-        footer {
-            background-color: var(--bg-dark);
-            color: #d1d5db; /* Tailwind slate-300 */
-        }
-        footer a:hover i {
-            color: var(--accent-color);
-            transform: scale(1.2); /* İkon büyümesi */
-            transition: transform 0.3s ease;
-        }
-        footer a i {
-            transition: transform 0.3s ease; /* İkon küçülmesi */
-        }
-
-
-        .btn-primary {
-            background-image: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
-            background-size: 200% auto; /* Gradient animasyonu için */
-            color: white;
-            font-weight: 800; 
-            padding: 20px 45px; 
-            border-radius: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 18px -4px rgba(90, 8, 45, 0.5);
-            border: none;
-        }
-        .btn-primary:hover {
-            background-position: right center; /* Gradient kaydırma */
-            transform: translateY(-4px) scale(1.04);
-            box-shadow: 0 10px 25px -6px rgba(90, 8, 45, 0.7);
-        }
-        .btn-secondary { 
-            color: var(--secondary-color);
-            font-weight: 800; /* Daha kalın */
-            transition: color 0.3s ease, letter-spacing 0.3s ease; /* Harf aralığı animasyonu */
-            letter-spacing: 0.5px;
-        }
-        .btn-secondary:hover {
-            color: var(--primary-color);
-            letter-spacing: 1px; /* Hover'da harf aralığı artışı */
-        }
-        .btn-secondary i {
-            transition: transform 0.3s ease;
-        }
-        .btn-secondary:hover i {
-            transform: translateX(3px); /* İkonun hafifçe sağa kayması */
-        }
-        
-        /* Galeri öğeleri için daha belirgin vurgu */
-        .gallery-item img {
-            transition: transform 0.5s ease, filter 0.5s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.08);
-            filter: brightness(1.1) saturate(1.2);
-        }
-        .gallery-item .pt-5 h5 { /* Galeri başlıkları */
-            color: var(--secondary-color);
-        }
-
-    </style>
+    <title>Amerika'nın Keşfi: Kaos Teorisi Perspektifi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-100 text-slate-800">
-
-    <div class="preloader">
-        <div class="spinner"></div>
-    </div>
-
-    <nav class="py-4">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center">
-            <a href="#" class="nav-brand">Keşfin Kaosu</a>
-            <button id="mobileMenuButton" class="md:hidden p-3 rounded-lg text-gray-700 hover:text-primary-color hover:bg-rose-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-color">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-            <div id="navLinks" class="hidden md:flex flex-col md:flex-row md:items-center md:space-x-1 lg:space-x-2 w-full md:w-auto mt-4 md:mt-0">
-                <a href="#giris" class="nav-link">Giriş</a>
-                <a href="#kesif" class="nav-link">Amerika'nın Keşfi</a>
-                <a href="#kaos" class="nav-link">Kaos Teorisi</a>
-                <a href="#kesisim" class="nav-link">Kesişim Noktası</a>
-                <a href="#etkilesimli-araclar" class="nav-link">Etkileşimli Araçlar</a>
-                <a href="#zaman-tuneli" class="nav-link">Zaman Tüneli</a>
-                <a href="#galeri" class="nav-link">Akademik Galeri</a>
-                <a href="#blog" class="nav-link">Makaleler</a>
-                <a href="#kaynakca" class="nav-link">Kaynakça</a>
-            </div>
-        </div>
-    </nav>
-
-    <header id="giris" class="bg-gradient-to-br from-rose-100 via-amber-100 to-fuchsia-100 py-32 md:py-40 reveal">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="main-title text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black mb-12">Keşfin Kaotik Mirası</h1>
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-16">Tarihin Akışını Değiştiren Bir Olayın Kaos Teorisi Perspektifinden İleri Düzey Akademik Analizi</h2>
-            <p class="max-w-5xl mx-auto text-xl md:text-2xl text-slate-700 mb-24 leading-relaxed academic-text">
-                Kristof Kolomb'un 1492'deki yolculuğu, yalnızca coğrafi bir keşif olmanın ötesinde, küresel ölçekte geri dönülmez değişimleri tetikleyen, başlangıç koşullarına son derece hassas, karmaşık bir sistemin fitilini ateşlemiştir. Bu çalışma, Amerika'nın "keşfi" olarak adlandırılan olayın ve sonuçlarının, kaos teorisinin temel prensipleri ışığında multidisipliner bir yaklaşımla incelenmesini amaçlamaktadır.
-            </p>
-            <div class="my-24 transform hover:scale-105 transition-transform duration-700 ease-out">
-                <img src="https://placehold.co/1200x650/fed7aa/5A082D?text=Eski+Dünya+Haritası+ve+Kaotik+Desenler+V3" alt="Eski Dünya Haritası ve Kaos Teorisi Öğeleriyle Kompozisyon" class="mx-auto rounded-3xl shadow-2xl border-8 border-white">
-            </div>
-            <a href="#kesif" class="btn-primary">İncelemeye Başla <i class="fas fa-arrow-right ml-3"></i></a>
-        </div>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#giris">Giriş</a></li>
+                <li><a href="#tarih">Tarih</a></li>
+                <li><a href="#kaos">Kaos Teorisi</a></li>
+                <li><a href="#analiz">Kaotik Analiz</a></li>
+                <li><a href="#simulasyon">Simülasyonlar</a></li>
+                <li><a href="#sonuc">Sonuç</a></li>
+                <li><a href="#kaynakca">Kaynakça</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section id="kesif" class="py-28 md:py-36 bg-bg-medium reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Amerika'nın Keşfi: Tarihsel Bağlam, Ekolojik Emperyalizm ve Etkileri</h2>
-            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-16">
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold mb-7"><i class="fas fa-globe-americas mr-4 text-secondary-color"></i>Keşif Öncesi Dünyalar</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">15. yüzyıl sonlarında Avrupa, Asya ve Afrika'daki siyasi, ekonomik ve teknolojik durum. Amerika kıtalarındaki yerli medeniyetlerin (örn: Aztek, İnka, Maya, Mississippi Kültürü, İrokua Konfederasyonu) çeşitliliği, gelişmişlik düzeyleri ve dünya görüşleri. Bu toplumların kendi iç dinamikleri ve çevreleriyle olan karmaşık ilişkileri. <span class="citation-needed">[Kaynak: Mann, 2005, "1491"]</span></p>
+    <!-- Hero Section -->
+    <section id="giris" class="hero">
+        <div class="hero-content">
+            <h1>Amerika'nın Keşfi: Kaos Teorisi Perspektifi</h1>
+            <p class="subtitle">Tarihsel olayları kaotik sistemler olarak incelemek</p>
+            <div class="scroll-indicator">↓</div>
+        </div>
+        <canvas id="heroCanvas"></canvas>
+    </section>
+
+    <!-- Tarih Section -->
+    <section id="tarih" class="content-section">
+        <div class="container">
+            <h2>Amerika'nın Keşfi: Tarihsel Perspektif</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-year="1492">
+                    <h3>1492 - Kolomb'un Yolculuğu</h3>
+                    <p>Kristof Kolomb, Hindistan'a ulaşmak amacıyla batıya yelken açar ve San Salvador adasına varır. Bu "tesadüfi" keşif, dünya tarihinin akışını değiştirir.</p>
                 </div>
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold mb-7"><i class="fas fa-ship mr-4 text-secondary-color"></i>Avrupa Genişlemesi ve İlk Temaslar</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Yeni ticaret yolları arayışı, merkantilizm, teknolojik yenilikler (karavel, usturlap), dini motivasyonlar. Kristof Kolomb'un yolculukları ve sonrasındaki kaşiflerin (örn: Vespucci, Cabot, Cortés, Pizarro) etkileşimleri. "Bakir Toprak Salgınları" (Virgin Soil Epidemics) kavramı: yerli toplumların Avrasya hastalıklarına karşı bağışıklık eksikliğinin yıkıcı demografik sonuçları. <span class="citation-needed">[Kaynak: Crosby, 1972; Diamond, 1997]</span></p>
+                
+                <div class="timeline-item" data-year="1000">
+                    <h3>1000 - Viking Keşifleri</h3>
+                    <p>Leif Erikson ve Vikingler, Kolomb'dan 500 yıl önce Kuzey Amerika'ya ulaşır ancak kalıcı bir etki bırakamazlar.</p>
                 </div>
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold mb-7"><i class="fas fa-exchange-alt mr-4 text-secondary-color"></i>Columbian Exchange ve Ekolojik Emperyalizm</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Alfred Crosby'nin "Ekolojik Emperyalizm" tezi: Avrupalıların sadece teknoloji ve hastalıklarla değil, aynı zamanda getirdikleri bitki ve hayvan türleriyle (portmanteau biota) Yeni Dünya ekosistemlerini nasıl dönüştürdüğü ve kendi lehlerine çevirdiği. Kıtalararası bitki, hayvan, teknoloji, hastalık ve fikir alışverişinin (Columbian Exchange) uzun vadeli küresel etkileri: demografik değişimler, tarımsal devrimler, kölelik sisteminin genişlemesi ve yeni küresel güç dengeleri. <span class="citation-needed">[Kaynak: Crosby, 1986, "Ecological Imperialism"]</span></p>
+                
+                <div class="timeline-item" data-year="1519">
+                    <h3>1519-1521 - Aztek İmparatorluğu'nun Çöküşü</h3>
+                    <p>Hernán Cortés'in küçük bir orduyla devasa Aztek İmparatorluğu'nu yıkması, başlangıç koşullarına hassas bağımlılığın örneğidir.</p>
+                </div>
+                
+                <div class="timeline-item" data-year="1607">
+                    <h3>1607 - Jamestown Kolonisi</h3>
+                    <p>İlk kalıcı İngiliz kolonisi kurulur. Küçük bir yerleşim, zamanla büyük bir ulusun temelini oluşturur.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Tarihsel Dönüm Noktaları</h3>
+                <p>Amerika'nın keşfi, tek bir olay değil, birbiriyle etkileşen sayısız faktörün oluşturduğu karmaşık bir süreçtir. Teknolojik gelişmeler, ekonomik motivasyonlar, siyasi rekabet ve hatta iklim değişiklikleri bu süreçte rol oynamıştır.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kaos Teorisi Section -->
+    <section id="kaos" class="content-section dark-bg">
+        <div class="container">
+            <h2>Kaos Teorisi Nedir?</h2>
+            
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>Başlangıç Koşullarına Hassas Bağımlılık</h3>
+                    <p>Kelebek etkisi olarak da bilinen bu ilke, küçük değişikliklerin büyük sonuçlar doğurabileceğini açıklar.</p>
+                    <canvas id="butterflyCanvas" width="300" height="200"></canvas>
+                </div>
+                
+                <div class="theory-card">
+                    <h3>Çatallanma (Bifurcation)</h3>
+                    <p>Sistemin davranışının aniden değiştiği kritik noktalar. Tarihte bu, devrimlere veya büyük değişimlere karşılık gelir.</p>
+                    <canvas id="bifurcationCanvas" width="300" height="200"></canvas>
+                </div>
+                
+                <div class="theory-card">
+                    <h3>Garip Çekiciler</h3>
+                    <p>Kaotik sistemlerin zaman içinde yöneldiği düzensiz ama belirli örüntüler. Tarihsel döngüler bu şekilde açıklanabilir.</p>
+                    <canvas id="attractorCanvas" width="300" height="200"></canvas>
+                </div>
+                
+                <div class="theory-card">
+                    <h3>Fraktal Yapılar</h3>
+                    <p>Kendine benzer örüntüler. Tarihte, benzer olayların farklı ölçeklerde tekrarlanması.</p>
+                    <canvas id="fractalCanvas" width="300" height="200"></canvas>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Lorenz Sistemi Simülasyonu</h3>
+                <p>Kaotik davranışın klasik örneği. Parametreleri değiştirerek sistemin nasıl değiştiğini gözlemleyin.</p>
+                <div class="controls">
+                    <label>σ (Sigma): <input type="range" id="sigma" min="5" max="15" value="10" step="0.1">
+                        <span id="sigmaValue">10</span></label>
+                    <label>ρ (Rho): <input type="range" id="rho" min="20" max="30" value="28" step="0.1">
+                        <span id="rhoValue">28</span></label>
+                    <label>β (Beta): <input type="range" id="beta" min="1" max="5" value="2.667" step="0.1">
+                        <span id="betaValue">2.667</span></label>
+                    <button id="resetLorenz">Sıfırla</button>
+                </div>
+                <canvas id="lorenzCanvas" width="600" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kaotik Analiz Section -->
+    <section id="analiz" class="content-section">
+        <div class="container">
+            <h2>Amerika'nın Keşfinde Kaotik Parametreler</h2>
+            
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <h3>1. Kelebek Etkisi Örnekleri</h3>
+                    <ul>
+                        <li><strong>Kolomb'un Navigasyon Hatası:</strong> Dünya'nın çevresini yanlış hesaplaması, Amerika'ya varmasına yol açtı.</li>
+                        <li><strong>Cortés'in Gemilerini Yakması:</strong> Geri dönüşü imkansız kılan bu karar, Aztek İmparatorluğu'nun sonunu getirdi.</li>
+                        <li><strong>Pocahontas ve John Smith:</strong> Kişisel bir ilişki, koloniler ve yerliler arasındaki dinamiği değiştirdi.</li>
+                    </ul>
+                </div>
+                
+                <div class="analysis-item">
+                    <h3>2. Çatallanma Noktaları</h3>
+                    <div class="bifurcation-timeline">
+                        <div class="bifurcation-point">
+                            <h4>1453 - Konstantinopolis'in Düşüşü</h4>
+                            <p>Doğu-Batı ticaret yollarının kapanması → Alternatif yol arayışı → Amerika'nın keşfi</p>
+                        </div>
+                        <div class="bifurcation-point">
+                            <h4>1492 - San Salvador'a Varış</h4>
+                            <p>Avrupa-Amerika teması → Kolombiya Değişimi → Küresel ekosistemin dönüşümü</p>
+                        </div>
+                        <div class="bifurcation-point">
+                            <h4>1776 - Amerikan Bağımsızlığı</h4>
+                            <p>Kolonyal sistem → Bağımsız ulus → Küresel süper güç</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-item">
+                    <h3>3. Geri Besleme Döngüleri</h3>
+                    <div class="feedback-diagram">
+                        <canvas id="feedbackCanvas" width="400" height="300"></canvas>
+                    </div>
+                    <p>Altın ve gümüş akışı → Avrupa ekonomisinin şişmesi → Daha fazla keşif finansmanı → Daha fazla sömürge</p>
+                </div>
+                
+                <div class="analysis-item">
+                    <h3>4. Fraktal Örüntüler</h3>
+                    <p>Keşif ve fetih örüntüleri farklı ölçeklerde tekrarlanır:</p>
+                    <ul>
+                        <li>Mikro: Tek bir conquistador'un bir köyü ele geçirmesi</li>
+                        <li>Mezo: Bir koloninin kurulması ve genişlemesi</li>
+                        <li>Makro: Tüm kıtanın kolonizasyonu</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="kaos" class="py-28 md:py-36 bg-white reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Kaos Teorisi: İleri Düzey Prensipler ve Tarihsel Uygulamalar</h2>
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="card bg-bg-medium p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-secondary-color mb-7"><i class="fas fa-project-diagram mr-4 text-primary-color"></i>Deterministik Kaos ve Faz Uzayı</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Doğrusal olmayan dinamik sistemlerin görünüşte rastgele davranışları. Sistemlerin tüm olası durumlarını temsil eden soyut bir alan olan "Faz Uzayı" kavramı. Kaotik sistemlerin faz uzayında karmaşık yörüngeler izlemesi (Poincaré, Lorenz). <span class="citation-needed">[Kaynak: Gleick, 1987]</span></p>
+    <!-- Simülasyonlar Section -->
+    <section id="simulasyon" class="content-section dark-bg">
+        <div class="container">
+            <h2>İnteraktif Simülasyonlar</h2>
+            
+            <div class="simulation-container">
+                <h3>1. Alternatif Tarih Simülatörü</h3>
+                <p>Başlangıç koşullarını değiştirerek farklı tarihsel senaryoları keşfedin.</p>
+                <div class="sim-controls">
+                    <label>Teknoloji Seviyesi: <input type="range" id="techLevel" min="1" max="10" value="5"></label>
+                    <label>Hastalık Direnci: <input type="range" id="diseaseResistance" min="1" max="10" value="3"></label>
+                    <label>Askeri Güç: <input type="range" id="militaryPower" min="1" max="10" value="7"></label>
+                    <label>Kültürel Adaptasyon: <input type="range" id="culturalAdaptation" min="1" max="10" value="4"></label>
+                    <button id="runSimulation">Simülasyonu Çalıştır</button>
                 </div>
-                <div class="card bg-bg-medium p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-secondary-color mb-7"><i class="fas fa-wind mr-4 text-primary-color"></i>Kelebek Etkisi ve Lyapunov Üstelleri</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Başlangıç koşullarına aşırı duyarlılık (Kelebek Etkisi). "Lyapunov Üstelleri"nin, bir sistemdeki yörüngelerin ne kadar hızlı ayrıştığını ölçerek bu hassasiyeti nicelemesi. Pozitif Lyapunov üsteli, kaosun bir göstergesidir.</p>
-                    <p class="text-slate-600 mt-5 text-lg italic">*Tarihsel analojisi: Amerika'nın keşfi gibi makro-tarihsel olaylarda, hangi "küçük" başlangıç faktörleri, olayların yörüngesini dramatik şekilde değiştirmiş olabilir?*</p>
-                </div>
-                <div class="card bg-bg-medium p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-secondary-color mb-7"><i class="fas fa-infinity mr-4 text-primary-color"></i>Fraktallar, Garip Çekerler ve Bifurkasyon</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Farklı ölçeklerde kendine benzeyen "Fraktallar" (Mandelbrot). Kaotik sistemlerin faz uzayında evrildiği karmaşık, fraktal benzeri yörüngeler olan "Garip Çekerler". Bir sistem parametresi değiştikçe sistem davranışının niteliksel olarak değiştiği "Bifurkasyon" noktaları; bu noktalar, sistemin farklı kararlı durumlara veya kaotik rejimlere geçişini işaret edebilir.</p>
-                </div>
-                <div class="card bg-bg-medium p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-secondary-color mb-7"><i class="fas fa-wave-square mr-4 text-primary-color"></i>Kendiliğinden Organize Olmuş Kritiklik (SOC) ve Tarih</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Per Bak tarafından geliştirilen SOC teorisi, karmaşık sistemlerin dış bir etken olmaksızın nasıl kritik bir duruma evrilebileceğini ve bu durumda küçük bir olayın büyük çığ benzeri olayları (örn: devrimler, ekonomik çöküşler) tetikleyebileceğini açıklar. Tarihsel sistemlerin uzun durgunluk dönemleri ve ardından gelen ani değişimler bu perspektifle incelenebilir. <span class="tooltip-trigger">SOC nedir?<span class="tooltip">Self-Organized Criticality: Sistemlerin kendiliğinden kritik bir denge durumuna ulaştığı ve küçük olayların büyük sonuçlar doğurabildiği bir teoridir.</span></span></p>
-                </div>
+                <canvas id="altHistoryCanvas" width="800" height="400"></canvas>
+                <div id="simulationResults"></div>
             </div>
-        </div>
-    </section>
-
-    <section id="kesisim" class="py-28 md:py-36 bg-bg-medium reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Kesişim Noktası: Keşif Sürecinde Kaotik Dinamikler ve Ağ Etkileri</h2>
-            <div class="space-y-24">
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-accent-color mb-7"><i class="fas fa-road mr-4 text-primary-color"></i>Yol Bağımlılığı (Path Dependence) ve Tarihsel Yörüngeler</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Erken olayların ve kararların, sonraki seçenekleri kısıtlayarak veya belirli yolları daha olası hale getirerek uzun vadeli tarihsel yörüngeleri nasıl şekillendirdiği. Amerika'nın keşfi sonrası oluşan sömürge yapıları, ticaret ağları ve güç ilişkileri, sonraki yüzyıllar boyunca "yol bağımlı" süreçler yaratmıştır. Bir kez belirli bir yola girildiğinde, alternatif yollara sapmak giderek zorlaşır. <span class="citation-needed">[Kaynak: Pierson, 2000, "Path Dependence"]</span></p>
+            
+            <div class="simulation-container">
+                <h3>2. Yayılma Dinamiği Modeli</h3>
+                <p>Avrupa etkisinin Amerika'da yayılmasını simüle edin.</p>
+                <div class="sim-controls">
+                    <label>Yayılma Hızı: <input type="range" id="spreadRate" min="0.1" max="2" value="1" step="0.1"></label>
+                    <label>Direnç Faktörü: <input type="range" id="resistanceFactor" min="0" max="1" value="0.5" step="0.1"></label>
+                    <button id="startSpread">Başlat</button>
+                    <button id="pauseSpread">Duraklat</button>
+                    <button id="resetSpread">Sıfırla</button>
                 </div>
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-accent-color mb-7"><i class="fas fa-sitemap mr-4 text-primary-color"></i>Ağ Teorisi ve Küresel Etkileşimlerin Modellenmesi</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Columbian Exchange, devasa bir biyolojik, ekonomik, kültürel ve sosyal ağın oluşumuna yol açmıştır. Ağ teorisi, bu tür karmaşık etkileşim ağlarının yapısını, dinamiklerini ve etkilerin (hastalıklar, fikirler, mallar) bu ağlar üzerinden nasıl yayıldığını anlamak için güçlü bir analitik çerçeve sunar. "Küçük dünya" (small-world) ve "ölçeksiz" (scale-free) ağ özellikleri, küresel bağlantılılığın hızını ve kapsamını açıklamada yardımcı olabilir.</p>
-                </div>
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-accent-color mb-7"><i class="fas fa-balance-scale-right mr-4 text-primary-color"></i>Kırılma Noktaları, Geri Besleme Döngüleri ve Alternatif Senaryolar</h3>
-                    <p class="academic-text text-slate-700 leading-relaxed">Tenochtitlan'ın düşüşü, Potosi madenlerinin keşfi gibi olaylar, sistemde önemli "kırılma noktaları" (tipping points) oluşturmuştur. Bu olaylar, pozitif ve negatif "geri besleme döngülerini" tetikleyerek öngörülemeyen sonuçlara yol açmıştır. Örneğin, hastalıkların yerli nüfusu azaltması, sömürgeciliği kolaylaştırmış (pozitif geri besleme); bu da daha fazla kaynağın Avrupa'ya akmasına ve yeni keşiflerin finanse edilmesine olanak tanımıştır. Alternatif tarih senaryoları ("Ya Vikingler kalıcı olsaydı?") bu kritik noktalara ve başlangıç koşullarına duyarlılığı test etmemizi sağlar.</p>
-                </div>
+                <canvas id="spreadCanvas" width="800" height="600"></canvas>
             </div>
-        </div>
-    </section>
-
-    <section id="etkilesimli-araclar" class="py-28 md:py-36 bg-white reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Etkileşimli Araçlar ve Kavramsal Simülasyonlar</h2>
-            <p class="text-center text-slate-700 mb-24 max-w-4xl mx-auto academic-text">Bu bölümde, Amerika'nın keşfi ve kaos teorisi konularını daha derinlemesine anlamanıza yardımcı olacak etkileşimli araçlar ve basit simülasyonlar için konseptler sunulmaktadır. <strong class="text-primary-color">(Not: Bu araçlar kavramsal olup, tam işlevsellik için kapsamlı JavaScript ve potansiyel olarak sunucu taraflı geliştirme gerektirir.)</strong></p>
-            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-16">
-                <div class="interactive-tool-placeholder card p-12 reveal">
-                    <h3 class="text-3xl font-semibold mb-6"><i class="fas fa-route mr-3 text-primary-color"></i>Kelebek Etkisi: Rota Simülatörü</h3>
-                    <p class="text-lg text-slate-600 mb-6">Kolomb'un yolculuğundaki varsayımsal başlangıç koşullarını (örn: rüzgar hızı, okyanus akıntıları, kalkış tarihi sapması) değiştirerek potansiyel farklı varış noktalarını veya olayları harita üzerinde görselleştirin. <em>(Geliştirme Notu: Basit parametre girişleri ve sonuçların harita üzerinde şematik gösterimi.)</em></p>
-                    <img src="https://placehold.co/400x250/ddd6fe/5A082D?text=Kelebek+Etkisi+Simülasyonu" alt="Kelebek Etkisi Rota Simülasyonu Konsepti" class="mt-6 mx-auto rounded-xl shadow-lg">
-                </div>
-                <div class="interactive-tool-placeholder card p-12 reveal">
-                    <h3 class="text-3xl font-semibold mb-6"><i class="fas fa-leaf mr-3 text-primary-color"></i>Columbian Exchange: Etkileşimli Ağ Haritası</h3>
-                    <p class="text-lg text-slate-600 mb-6">Kıtalar arasında taşınan önemli bitki, hayvan, hastalık ve teknolojileri interaktif bir dünya haritası üzerinde inceleyin. Farklı kategorilere göre filtreleyin ve zaman içindeki yayılımlarını gözlemleyin. <em>(Geliştirme Notu: Tıklanabilir harita bölgeleri, bilgi pencereleri, zaman kaydıracı.)</em></p>
-                     <img src="https://placehold.co/400x250/ddd6fe/5A082D?text=Columbian+Exchange+Haritası" alt="Columbian Exchange Ağ Haritası Konsepti" class="mt-6 mx-auto rounded-xl shadow-lg">
-                </div>
-                <div class="interactive-tool-placeholder card p-12 reveal">
-                    <h3 class="text-3xl font-semibold mb-6"><i class="fas fa-dice-d20 mr-3 text-primary-color"></i>Basit Fraktal Kaşifi</h3>
-                    <p class="text-lg text-slate-600 mb-6">Mandelbrot veya Julia kümesi gibi temel fraktalların nasıl oluştuğunu adım adım gözlemleyin. Basit iterasyon parametrelerini değiştirerek farklı fraktal desenler ve karmaşıklık seviyeleri yaratın. <em>(Geliştirme Notu: Canvas API ile temel fraktal görselleştirme ve kullanıcı kontrollü parametreler.)</em></p>
-                    <img src="https://placehold.co/400x250/ddd6fe/5A082D?text=Fraktal+Kaşifi" alt="Fraktal Kaşifi Arayüzü Konsepti" class="mt-6 mx-auto rounded-xl shadow-lg">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="zaman-tuneli" class="py-28 md:py-36 bg-bg-medium reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Gelişmiş Zaman Tüneli: Kritik Olaylar, Bağlantılar ve Kaotik Yansımalar</h2>
-            <p class="text-center text-slate-700 mb-24 max-w-4xl mx-auto academic-text">Bu etkileşimli zaman tüneli, Amerika'nın keşfi ve kaos teorisiyle ilgili önemli olayları, aralarındaki karmaşık bağlantıları ve potansiyel kaotik dinamiklerini vurgulamaktadır. Detayları görmek için başlıklara tıklayınız.</p>
-            <div class="relative max-w-5xl mx-auto">
-                <div class="timeline-item reveal">
-                    <h4 class="text-3xl font-semibold mb-4">MÖ ~30.000 - ~13.000: İlk İnsanların Amerika'ya Göçü <i class="fas fa-chevron-right expand-icon ml-auto"></i></h4>
-                    <div class="timeline-details">
-                        <p class="text-slate-700 academic-text">Bering Kara Köprüsü üzerinden Asya'dan Amerika'ya göçler. Bu, kıtanın insanlık tarihindeki "başlangıç koşullarını" oluşturur. Farklı göç dalgaları ve zamanlamaları, sonraki medeniyetlerin gelişimini, genetik çeşitliliğini ve hastalıklara karşı direncini etkilemiştir. Bu erken dağılım, kıtanın sonraki olaylara vereceği tepkiler için zemin hazırlamıştır.</p>
-                        <img src="https://placehold.co/380x250/e0f2fe/704214?text=Bering+Kara+Köprüsü+Haritası" alt="Bering Kara Köprüsü Haritası" class="float-right ml-7 mb-4 rounded-lg shadow-lg border-2 border-accent-color">
+            
+            <div class="simulation-container">
+                <h3>3. Ekonomik Kaos Modeli</h3>
+                <p>Altın akışının Avrupa ekonomisine etkisini modelleyin.</p>
+                <canvas id="economicChaosCanvas" width="800" height="400"></canvas>
+                <div class="economic-stats">
+                    <div class="stat-item">
+                        <h4>Enflasyon Oranı</h4>
+                        <span id="inflationRate">0%</span>
                     </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <h4 class="text-3xl font-semibold mb-4">1492: Kolomb'un İlk Yolculuğu ve Amerika'ya Varışı <i class="fas fa-chevron-right expand-icon ml-auto"></i></h4>
-                    <div class="timeline-details">
-                        <p class="text-slate-700 academic-text">Yeni Dünya'nın Avrupa tarafından "yeniden keşfi". Bu olay, küresel ölçekte devasa ve öngörülemeyen sonuçlar doğuran bir "kırılma noktası" (tipping point) ve "kelebek etkisinin" en bilinen tarihsel örneklerinden birinin başlangıcıdır. Bu andan itibaren iki ayrı dünya sistemi hızla ve geri dönülmez bir şekilde etkileşime girmiştir.</p>
-                         <img src="https://placehold.co/380x250/fce7f3/5A082D?text=Kolomb'un+Gemileri" alt="Kolomb'un Gemileri" class="float-right ml-7 mb-4 rounded-lg shadow-lg border-2 border-primary-color">
+                    <div class="stat-item">
+                        <h4>Altın Rezervi</h4>
+                        <span id="goldReserve">1000</span>
                     </div>
-                </div>
-                 <div class="timeline-item reveal">
-                    <h4 class="text-3xl font-semibold mb-4">1519-1521: Aztek İmparatorluğu'nun Yıkılışı <i class="fas fa-chevron-right expand-icon ml-auto"></i></h4>
-                    <div class="timeline-details">
-                        <p class="text-slate-700 academic-text">Hernán Cortés liderliğindeki İspanyolların, hastalıklar (özellikle çiçek salgını), teknolojik üstünlük ve yerel halklar arasındaki siyasi bölünmelerden yararlanarak Aztekleri yenmesi. Bu, Amerika'daki güç dengelerini kökten değiştiren ve İspanyol sömürgeciliğini kıta içinde pekiştiren bir "kırılma noktasıdır". Olayların hızı ve sonucu, birçok kaotik faktörün birleşimini yansıtır.</p>
-                         <img src="https://placehold.co/380x250/fee2e2/7f1d1d?text=Aztek+Yıkılışı+Tasviri" alt="Aztek Yıkılışı Tasviri" class="float-right ml-7 mb-4 rounded-lg shadow-lg border-2 border-red-700">
+                    <div class="stat-item">
+                        <h4>Ticaret Dengesi</h4>
+                        <span id="tradeBalance">0</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="galeri" class="py-28 md:py-36 bg-white reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Akademik Galeri: Görsel Kaynaklar ve Bilimsel Diyagramlar</h2>
-            <p class="text-center text-slate-700 mb-24 max-w-4xl mx-auto academic-text">Bu galeri, konuyu destekleyen tarihi haritalar, belgeler, sanat eserleri ve kaos teorisiyle ilgili bilimsel diyagramlar içermektedir. Resimlere tıklayarak büyütebilirsiniz.</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-14">
-                <div class="gallery-item bg-bg-medium rounded-2xl shadow-xl overflow-hidden card p-7 reveal cursor-pointer" data-src="https://placehold.co/1200x900/e0e7ff/4338ca?text=1507+Waldseemüller+Haritası+(Geniş)" data-caption="Waldseemüller Haritası (1507) - 'Amerika' adının ilk kez kullanıldığı tarihi harita.">
-                    <img src="https://placehold.co/600x450/e0e7ff/4338ca?text=1507+Waldseemüller+Haritası" alt="1507 Waldseemüller Haritası" class="w-full h-72 object-contain rounded-lg">
-                    <div class="pt-6">
-                        <h5 class="font-bold text-2xl text-indigo-800">Waldseemüller Haritası (1507)</h5>
-                        <p class="text-lg text-slate-600">"Amerika" adının ilk kullanımı.</p>
+    <!-- Sonuç Section -->
+    <section id="sonuc" class="content-section">
+        <div class="container">
+            <h2>Sonuç</h2>
+            <div class="conclusion-content">
+                <p>Amerika'nın keşfi, kaos teorisinin tarihsel olaylara uygulanmasının mükemmel bir örneğidir. Bu analiz bize şunları göstermektedir:</p>
+                
+                <div class="conclusion-points">
+                    <div class="point">
+                        <h3>1. Tarih Deterministik Değildir</h3>
+                        <p>Küçük değişiklikler, tamamen farklı tarihsel sonuçlara yol açabilir. Kolomb'un yolculuğundaki en ufak bir değişiklik, bugünkü dünyayı tanınmaz hale getirebilirdi.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h3>2. Karmaşık Sistemler Öngörülemez</h3>
+                        <p>Tarihsel olaylar, çok sayıda değişkenin etkileşiminden doğar. Bu etkileşimler o kadar karmaşıktır ki, sonuçları önceden tahmin etmek imkansızdır.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h3>3. Örüntüler Tekrarlanır</h3>
+                        <p>Kaotik sistemler tamamen rastgele değildir. Keşif, fetih ve kültürel etkileşim örüntüleri, farklı zaman ve mekanlarda benzer şekillerde ortaya çıkar.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h3>4. Kritik Noktalar Belirleyicidir</h3>
+                        <p>Tarihte bazı anlar, sistemin evriminde kritik rol oynar. Bu çatallanma noktalarında alınan kararlar, yüzyıllar boyunca etkisini sürdürür.</p>
                     </div>
                 </div>
-                <div class="gallery-item bg-bg-medium rounded-2xl shadow-xl overflow-hidden card p-7 reveal cursor-pointer" data-src="https://placehold.co/1200x900/fecaca/991b1b?text=Aztek+Kodeksi+Detayı+(Geniş)" data-caption="Aztek Kodeksinden Bir Sahne (Örn: Florentine Codex) - Yerli perspektifini ve Kolomb öncesi yaşamı yansıtan önemli bir görsel kaynak.">
-                    <img src="https://placehold.co/600x450/fecaca/991b1b?text=Aztek+Kodeksinden+Bir+Sahne" alt="Aztek Kodeksinden Bir Sahne" class="w-full h-72 object-contain rounded-lg">
-                    <div class="pt-6">
-                        <h5 class="font-bold text-2xl text-red-800">Aztek Kodeksi Detayı</h5>
-                        <p class="text-lg text-slate-600">Yerli perspektifi.</p>
-                    </div>
-                </div>
-                <div class="gallery-item bg-bg-medium rounded-2xl shadow-xl overflow-hidden card p-7 reveal cursor-pointer" data-src="https://placehold.co/1200x900/d1fae5/047857?text=Lorenz+Çekeri+Diyagramı+(Geniş)" data-caption="Lorenz Çekeri (Attractor) Diyagramı - Kaotik sistemlerin başlangıç koşullarına duyarlılığını ve karmaşık davranışını gösteren ikonik bir diyagram.">
-                    <img src="https://placehold.co/600x450/d1fae5/047857?text=Lorenz+Çekeri+Diyagramı" alt="Lorenz Çekeri Diyagramı" class="w-full h-72 object-contain rounded-lg">
-                    <div class="pt-6">
-                        <h5 class="font-bold text-2xl text-emerald-800">Lorenz Çekeri</h5>
-                        <p class="text-lg text-slate-600">Kaotik sistem davranışı.</p>
-                    </div>
-                </div>
-                <div class="gallery-item bg-bg-medium rounded-2xl shadow-xl overflow-hidden card p-7 reveal cursor-pointer" data-src="https://placehold.co/1200x900/ffedd5/9a3412?text=Mandelbrot+Kümesi+Görseli+(Geniş)" data-caption="Mandelbrot Kümesi Fraktal Görseli - Sonsuz karmaşıklık ve kendine benzerlik gösteren ünlü bir fraktal örneği.">
-                    <img src="https://placehold.co/600x450/ffedd5/9a3412?text=Mandelbrot+Kümesi+Görseli" alt="Mandelbrot Kümesi Fraktal Görseli" class="w-full h-72 object-contain rounded-lg">
-                    <div class="pt-6">
-                        <h5 class="font-bold text-2xl text-orange-800">Mandelbrot Kümesi</h5>
-                        <p class="text-lg text-slate-600">Ünlü fraktal örneği.</p>
-                    </div>
+                
+                <div class="final-thought">
+                    <p>Kaos teorisi perspektifinden bakıldığında, Amerika'nın keşfi sadece coğrafi bir olay değil, insan tarihinin en büyük kaotik dönüşümlerinden biridir. Bu analiz, tarihi daha derin anlamak ve gelecekteki olasılıkları daha iyi değerlendirmek için yeni bir çerçeve sunar.</p>
                 </div>
             </div>
-             <p class="text-center text-slate-600 mt-20 italic">(Bu galeri, yüksek çözünürlüklü, telif hakkı uygun ve akademik nitelikte görsellerle zenginleştirilmelidir.)</p>
         </div>
     </section>
 
-    <div id="lightbox" class="lightbox">
-        <button class="lightbox-close" aria-label="Kapat">&times;</button>
-        <button class="lightbox-prev" aria-label="Önceki">&#10094;</button>
-        <button class="lightbox-next" aria-label="Sonraki">&#10095;</button>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="Büyütülmüş Resim">
-            <p id="lightboxCaption" class="text-center text-white mt-4 text-lg bg-black bg-opacity-70 p-4 rounded-md"></p>
-        </div>
-    </div>
-
-    <section id="blog" class="py-28 md:py-36 bg-bg-medium reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Akademik Makaleler, Vaka İncelemeleri ve Tartışmalar</h2>
-            <p class="text-center text-slate-700 mb-24 max-w-4xl mx-auto academic-text">Bu bölümde, konuyla ilgili derinlemesine analizler, farklı teorik yaklaşımlar, devam eden akademik tartışmalar ve Amerika'nın keşfi ile kaos teorisinin kesişim noktalarını irdeleyen vaka incelemeleri yer alacaktır.</p>
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-secondary-color mb-6"><i class="fas fa-file-alt mr-4 text-primary-color"></i>Makale: "Kaos Teorisi ve Büyük Tarihsel Kırılmalar"</h3>
-                    <p class="academic-text text-slate-700 mb-7 leading-relaxed">Bu makale, Amerika'nın keşfini bir makro-tarihsel kırılma olarak ele alarak, kaos teorisinin (başlangıç koşullarına duyarlılık, bifurkasyon, garip çekerler) bu tür olayları anlamadaki potansiyelini ve metodolojik sınırlılıklarını tartışmaktadır. Özellikle, keşif sonrası oluşan yeni küresel sistemin kaotik dinamikleri incelenmektedir.</p>
-                    <a href="#" class="btn-secondary text-2xl">Tam Metin (PDF) <i class="fas fa-external-link-alt ml-2 text-base"></i></a>
-                </div>
-                <div class="card bg-white p-12 rounded-2xl shadow-xl reveal">
-                    <h3 class="text-4xl font-bold text-secondary-color mb-6"><i class="fas fa-comments mr-4 text-primary-color"></i>Tartışma: "Columbian Exchange: Ekolojik Emperyalizm mi?"</h3>
-                    <p class="academic-text text-slate-700 mb-7 leading-relaxed">Farklı tarihçilerin (örn: Crosby, Mann, Diamond) Columbian Exchange'in doğası, etkileri ve etik boyutları hakkındaki argümanları karşılaştırmalı olarak incelenmektedir. Bu tartışma, olayın "kaçınılmaz" bir küresel etkileşim mi, yoksa bilinçli bir "ekolojik emperyalizm" projesi mi olduğu sorusuna odaklanmaktadır.</p>
-                    <a href="#" class="btn-secondary text-2xl">Tartışmayı Oku <i class="fas fa-external-link-alt ml-2 text-base"></i></a>
-                </div>
-            </div>
-             <p class="text-center text-slate-600 mt-24 italic">(Bu bölüm, hakemli dergilerden makaleler, kitap bölümleri, önemli akademik blog yazıları ve konferans bildirileriyle zenginleştirilmelidir.)</p>
-        </div>
-    </section>
-
-    <section id="kaynakca" class="py-28 md:py-36 bg-white reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title text-5xl md:text-6xl lg:text-7xl font-bold mb-28 text-center">Detaylı ve Genişletilmiş Akademik Kaynakça</h2>
-            <p class="text-center text-slate-700 mb-24 max-w-4xl mx-auto academic-text">Bu web sitesinin hazırlanmasında yararlanılan temel ve ileri düzey akademik kaynaklar aşağıda listelenmiştir. Atıflar için tutarlı bir stil (örn: APA 7. Edisyon) benimsenmesi önerilir.</p>
-            <div class="max-w-5xl mx-auto bg-bg-medium p-14 rounded-2xl shadow-xl">
-                <ul class="list-none space-y-6 academic-text text-slate-800">
-                    <li class="border-b border-slate-300 pb-4"><i class="fas fa-book mr-4 text-primary-color text-xl"></i>Crosby, A. W. (1972). *The Columbian Exchange: Biological and Cultural Consequences of 1492.* Greenwood Press.</li>
-                    <li class="border-b border-slate-300 pb-4"><i class="fas fa-book mr-4 text-primary-color text-xl"></i>Crosby, A. W. (1986). *Ecological Imperialism: The Biological Expansion of Europe, 900-1900.* Cambridge University Press.</li>
-                    <li class="border-b border-slate-300 pb-4"><i class="fas fa-book mr-4 text-primary-color text-xl"></i>Diamond, J. (1997). *Guns, Germs, and Steel: The Fates of Human Societies.* W.W. Norton & Company.</li>
-                    <li class="border-b border-slate-300 pb-4"><i class="fas fa-book mr-4 text-primary-color text-xl"></i>Gleick, J. (1987). *Chaos: Making a New Science.* Penguin Books.</li>
-                    <li class="border-b border-slate-300 pb-4"><i class="fas fa-scroll mr-4 text-primary-color text-xl"></i>Lorenz, E. N. (1963). Deterministic nonperiodic flow. *Journal of the Atmospheric Sciences, 20*(2), 130-141.</li>
-                    <li class="border-b border-slate-300 pb-4"><i class="fas fa-book mr-4 text-primary-color text-xl"></i>Mann, C. C. (2005). *1491: New Revelations of the Americas Before Columbus.* Vintage Books.</li>
+    <!-- Kaynakça Section -->
+    <section id="kaynakca" class="content-section dark-bg">
+        <div class="container">
+            <h2>Kaynakça</h2>
+            <div class="references">
+                <h3>Kitaplar</h3>
+                <ul>
+                    <li>Gleick, J. (1987). <em>Chaos: Making a New Science</em>. New York: Viking.</li>
+                    <li>Diamond, J. (1997). <em>Guns, Germs, and Steel</em>. New York: W.W. Norton.</li>
+                    <li>Mann, C. C. (2005). <em>1491: New Revelations of the Americas Before Columbus</em>. New York: Knopf.</li>
+                    <li>Crosby, A. W. (2003). <em>The Columbian Exchange: Biological and Cultural Consequences of 1492</em>. Westport: Praeger.</li>
+                    <li>Todorov, T. (1984). <em>The Conquest of America: The Question of the Other</em>. New York: Harper & Row.</li>
+                </ul>
+                
+                <h3>Akademik Makaleler</h3>
+                <ul>
+                    <li>Lorenz, E. N. (1963). "Deterministic Nonperiodic Flow." <em>Journal of the Atmospheric Sciences</em>, 20(2), 130-141.</li>
+                    <li>May, R. M. (1976). "Simple Mathematical Models with Very Complicated Dynamics." <em>Nature</em>, 261(5560), 459-467.</li>
+                    <li>Scheffer, M., et al. (2009). "Early-warning signals for critical transitions." <em>Nature</em>, 461(7260), 53-59.</li>
+                </ul>
+                
+                <h3>Tarihsel Kaynaklar</h3>
+                <ul>
+                    <li>Columbus, C. (1493). <em>Letter to Luis de Santángel</em>.</li>
+                    <li>Las Casas, B. de (1552). <em>A Short Account of the Destruction of the Indies</em>.</li>
+                    <li>Díaz del Castillo, B. (1568). <em>The True History of the Conquest of New Spain</em>.</li>
                 </ul>
             </div>
-             <p class="text-center text-slate-600 mt-20 italic">(Bu kaynakça, konuyla ilgili en güncel ve temel akademik çalışmaları, birincil kaynakları ve farklı disiplinlerden perspektifleri içerecek şekilde düzenli olarak güncellenmeli ve zenginleştirilmelidir.)</p>
         </div>
     </section>
 
-    <footer class="bg-bg-dark text-slate-300 py-24">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-2xl font-semibold">&copy; <span id="currentYear"></span> Keşfin Kaotik Mirası: İleri Düzey Akademik Bir İnceleme. Tüm hakları saklıdır.</p>
-            <p class="text-xl text-slate-400 mt-6">Bu site, eğitim, araştırma ve bilgilendirme amacıyla, akademik dürüstlük ve eleştirel düşünce ilkelerine bağlı kalınarak hazırlanmıştır.</p>
-            <p class="text-xl text-slate-400 mt-4">Danışmanlar (Örnek): Prof. Dr. Elif Kaosoğlu (Kaos Teorisi Uzmanı), Doç. Dr. Ahmet Tarihçi (Yeni Dünya Tarihi Uzmanı)</p>
-            <div class="mt-10 space-x-8">
-                <a href="#" class="text-slate-400 hover:text-accent-color transition-colors text-3xl"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-slate-400 hover:text-accent-color transition-colors text-3xl"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:info@kesfinkaosu.com" class="text-slate-400 hover:text-accent-color transition-colors text-3xl"><i class="fas fa-envelope"></i></a>
-            </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Amerika'nın Keşfi: Kaos Teorisi Perspektifi. Eğitim amaçlı hazırlanmıştır.</p>
         </div>
     </footer>
 
-    <script>
-        // Sayfa Yükleme Animasyonu
-        window.addEventListener('load', () => {
-            const preloader = document.querySelector('.preloader');
-            if (preloader) {
-                preloader.classList.add('hidden');
-            }
-            document.body.classList.add('loaded');
-        });
-
-        // Geçerli yılı footer'a ekler
-        const currentYearElement = document.getElementById('currentYear');
-        if (currentYearElement) {
-            currentYearElement.textContent = new Date().getFullYear();
-        }
-        
-
-        // Mobil menü toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const navLinksContainer = document.getElementById('navLinks');
-        if (mobileMenuButton && navLinksContainer) {
-            mobileMenuButton.addEventListener('click', () => {
-                navLinksContainer.classList.toggle('hidden');
-                navLinksContainer.classList.toggle('flex'); // 'flex' sınıfını ekleyerek görünür yap
-                mobileMenuButton.setAttribute('aria-expanded', navLinksContainer.classList.contains('flex').toString());
-            });
-        }
-
-        // Sayfa içi linklere tıklandığında mobil menüyü kapat ve aktif linki işaretle
-        const navLinks = navLinksContainer ? navLinksContainer.querySelectorAll('a.nav-link') : [];
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                navLinks.forEach(l => l.classList.remove('active'));
-                e.currentTarget.classList.add('active');
-                if (window.innerWidth < 768 && navLinksContainer && !navLinksContainer.classList.contains('hidden')) { // md breakpoint
-                    navLinksContainer.classList.add('hidden');
-                    navLinksContainer.classList.remove('flex');
-                    mobileMenuButton.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-        
-        // Sayfa kaydırıldığında aktif navigasyon linkini güncelle
-        const sections = document.querySelectorAll('section[id]');
-        const navHeight = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 70; // Navigasyon yüksekliği veya varsayılan değer
-        
-        window.addEventListener('scroll', () => {
-            let currentSectionId = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - navHeight - 50) { // Daha iyi tetikleme için offset
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') && link.getAttribute('href').substring(1) === currentSectionId) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-
-        // Zaman Tüneli Etkileşimi
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach(item => {
-            const header = item.querySelector('h4');
-            const details = item.querySelector('.timeline-details');
-            if (header && details) {
-                header.addEventListener('click', () => {
-                    const isOpen = item.classList.toggle('open');
-                    details.style.maxHeight = isOpen ? details.scrollHeight + "px" : null;
-                    header.setAttribute('aria-expanded', isOpen.toString());
-                });
-                header.addEventListener('keydown', (event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        const isOpen = item.classList.toggle('open');
-                        details.style.maxHeight = isOpen ? details.scrollHeight + "px" : null;
-                        header.setAttribute('aria-expanded', isOpen.toString());
-                    }
-                });
-                header.setAttribute('role', 'button');
-                header.setAttribute('tabindex', '0');
-                header.setAttribute('aria-expanded', 'false'); // Başlangıçta kapalı
-            }
-        });
-
-        // Galeri Lightbox Etkileşimi
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxCaption = document.getElementById('lightboxCaption');
-        const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
-        const lightboxPrev = lightbox ? lightbox.querySelector('.lightbox-prev') : null;
-        const lightboxNext = lightbox ? lightbox.querySelector('.lightbox-next') : null;
-        let currentImageIndex = 0;
-        let imagesData = [];
-
-        galleryItems.forEach((item, index) => {
-            const imgSrc = item.dataset.src;
-            const imgCaption = item.dataset.caption;
-            if (imgSrc && imgCaption) {
-                imagesData.push({ src: imgSrc, caption: imgCaption });
-                item.addEventListener('click', () => {
-                    currentImageIndex = imagesData.findIndex(imgData => imgData.src === imgSrc); // Doğru indeksi bul
-                    showLightboxImage(currentImageIndex);
-                    if (lightbox) lightbox.classList.add('show');
-                });
-            }
-        });
-
-        function showLightboxImage(index) {
-            if (index >= 0 && index < imagesData.length && lightboxImage && lightboxCaption && lightboxPrev && lightboxNext) {
-                lightboxImage.src = imagesData[index].src;
-                lightboxCaption.textContent = imagesData[index].caption;
-                currentImageIndex = index;
-                lightboxPrev.style.display = (index === 0) ? 'none' : 'block';
-                lightboxNext.style.display = (index === imagesData.length - 1) ? 'none' : 'block';
-            }
-        }
-
-        if(lightboxClose) {
-            lightboxClose.addEventListener('click', () => { if (lightbox) lightbox.classList.remove('show'); });
-        }
-        if(lightboxPrev) {
-            lightboxPrev.addEventListener('click', () => showLightboxImage(currentImageIndex - 1));
-        }
-        if(lightboxNext) {
-            lightboxNext.addEventListener('click', () => showLightboxImage(currentImageIndex + 1));
-        }
-        
-        document.addEventListener('keydown', (e) => {
-            if (lightbox && lightbox.classList.contains('show')) {
-                if (e.key === 'Escape') lightbox.classList.remove('show');
-                if (e.key === 'ArrowLeft' && currentImageIndex > 0) showLightboxImage(currentImageIndex - 1);
-                if (e.key === 'ArrowRight' && currentImageIndex < imagesData.length - 1) showLightboxImage(currentImageIndex + 1);
-            }
-        });
-
-
-        // Kaydırma Animasyonları (Intersection Observer)
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserverOptions = {
-            threshold: 0.1, // %10 göründüğünde tetikle
-            // rootMargin: "0px 0px -50px 0px" // Ekranın altından 50px önce tetikle
-        };
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Bir kere göründükten sonra animasyonu durdur
-                }
-            });
-        }, revealObserverOptions);
-
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
